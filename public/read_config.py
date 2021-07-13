@@ -24,4 +24,30 @@ class ReadConfig(object):
     @property
     def get_port(self):
         get_port = self.config.get("link", "port")
-        return get_port
+        get_port = int(get_port)
+        return int(get_port)
+
+    @property
+    def get_mysql_port(self):
+        get_mysql_port = self.config.get("mysql_con", "mysql_port")
+        return int(get_mysql_port)
+
+    @property
+    def get_mysql_database(self):
+        get_mysql_database = self.config.get("mysql_con", "mysql_database")
+        return get_mysql_database
+
+    @property
+    def get_mysql_user(self):
+        get_mysql_user = self.config.get("mysql_con", "mysql_user")
+        return get_mysql_user
+
+    @property
+    def get_mysql_passwd(self):
+        get_mysql_passwd = self.config.get("mysql_con", "mysql_passwd")
+        return get_mysql_passwd
+
+    @property
+    def get_mysql_charset(self):
+        get_mysql_charset = self.config.get("mysql_con", "mysql_charset")
+        return get_mysql_charset
