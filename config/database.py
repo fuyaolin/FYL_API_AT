@@ -4,9 +4,9 @@ from public.read_config import ReadConfig
 MySQL_conf = {
     'host': ReadConfig().get_ip,
     'port':30006,
-    'database': 'AnyRobot',
+    'database': 'xxx',
     'user': 'root',
-    'password': 'eisoo.com',
+    'password': 'xxx',
     'charset': 'utf8'
 }
 
