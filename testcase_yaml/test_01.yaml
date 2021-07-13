@@ -1,0 +1,12 @@
+-
+  name: 全国天气预报查询
+  request:
+    url: https://api.yonyoucloud.com/apis/dst/weatherResearch/weatherCurrent
+    method: get
+    headers:
+      authoration: apicode
+      apicode: 687d66c5e2314963a33cfb5e4093c335
+    params:
+      city: 110101
+    vailure:
+    - eq: {status: 1}
