@@ -3,11 +3,11 @@
 import pytest
 import requests
 import os
-from public.read_yaml import YamlUtil
+from public.yaml.read_yaml import ReadYaml
 
 
 class TestApi():
-    @pytest.mark.parametrize('args', YamlUtil(os.getcwd()+'\\test_api.yaml').read_yaml())
+    @pytest.mark.parametrize('args', ReadYaml(os.getcwd()+'\\test01.yaml').read_yaml())
     def test_01(self, args):
         url = args['request']['url']
         params = args['request']['params']
@@ -16,5 +16,5 @@ class TestApi():
         print(response)
         print(response.text)
 
-if __name__ == '__main__':
-    pytest.main(['-vs'])
+# if __name__ == '__main__':
+    # pytest.main(['-vs'])

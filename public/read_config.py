@@ -5,6 +5,7 @@
 from configparser import ConfigParser
 from public.read_path import CONFIGINI_PATH
 
+
 class ReadConfig(object):
     def __init__(self):
         # 读取config.ini配置文件

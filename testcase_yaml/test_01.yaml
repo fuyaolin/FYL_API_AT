@@ -1,12 +1,30 @@
--
-  name: 全国天气预报查询
+order_by: [Case1, Case2]
+all_skip: false
+Case1:
+  skip: True
+  name: 上海
+  title: 上海天气
   request:
     url: https://api.yonyoucloud.com/apis/dst/weatherResearch/weatherCurrent
     method: get
     headers:
       authoration: apicode
       apicode: 687d66c5e2314963a33cfb5e4093c335
-    params:
+    body:
       city: 110101
-    vailure:
+    check:
+    - eq: {status: 1}
+Case2:
+  skip: True
+  name: 北京
+  title: 北京天气
+  request:
+    url: https://api.yonyoucloud.com/apis/dst/weatherResearch/weatherCurrent
+    method: get
+    headers:
+      authoration: apicode
+      apicode: 687d66c5e2314963a33cfb5e4093c335
+    body:
+      city: 110101
+    check:
     - eq: {status: 1}

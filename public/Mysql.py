@@ -4,6 +4,7 @@
 import pymysql
 from public.read_config import ReadConfig
 
+
 class Mysql_Ope():
     def __init__(self):
         pass
@@ -18,11 +19,11 @@ class Mysql_Ope():
             db=ReadConfig().get_mysql_database,
             charset=ReadConfig().get_mysql_charset
         )
+        self.cursor = self.conn.cursor()
 
     # 查询数据库
     def mysql_ope_select(self, select_sql):
         self.mysql_ope_connection()
-        self.cursor = self.conn.cursor()
         self.cursor.execute(select_sql)
         self.cursor.fetchone()
         self.mysql_ope_close()
