@@ -1,7 +1,7 @@
 order_by: [Case1, Case2]
 all_skip: false
 Case1:
-  skip: True
+  skip: false
   name: 上海
   title: 上海天气
   request:
@@ -15,7 +15,7 @@ Case1:
     check:
     - eq: {status: 1}
 Case2:
-  skip: True
+  skip: FLASE
   name: 北京
   title: 北京天气
   request:

@@ -3,7 +3,7 @@
 import pytest
 import requests
 import os
-from public.yaml.read_yaml import ReadYaml
+from public.yaml.yamlUtil import ReadYaml
 
 
 class TestApi():
