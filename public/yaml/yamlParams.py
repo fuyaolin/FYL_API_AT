@@ -1,5 +1,6 @@
-from public.testcase_path import TESTCASE_YAML_TEST_01_PATH
 from public.yaml.yamlUtil import ReadYaml
+from public.testcase_path import TESTCASE_YAML_TEST_01_PATH
+from public.yaml.yamlManager import YamlRequest
 
 class Params(object):
     def __init__(self, yaml_path):
@@ -26,7 +27,6 @@ class Params(object):
                 continue
             else:
                 self.case_params(case)
-                # self.case_method()
 
     # 测试用例接口参数
     def case_params(self, case):
@@ -37,15 +37,16 @@ class Params(object):
         headers = self.params[case]['request']['headers']
         body = self.params[case]['request']['body']
         check = self.params[case]['request']['check']
-        print(name, title, url, method, headers, body, check)
-        return name, title, url, method, headers, body, check
-
-
-    def case_method(self):
-        pass
-
+        if method == ('get' or 'GET'):
+            YamlRequest(headers, url, body).yaml_get()
+        elif method == ('post' or 'POST'):
+            YamlRequest(headers, url, body).yaml_post()
+        elif method == ('put' or 'PUT'):
+            YamlRequest(headers, url, body).yaml_put()
+        elif method == ('delete' or 'DELETE'):
+            YamlRequest(headers, url, body).yaml_delete()
+        else:
+            Exception('请输入正确的请求方法')
 
 if __name__ == '__main__':
     Params(TESTCASE_YAML_TEST_01_PATH).yaml_params()
-
-

@@ -3,14 +3,14 @@
 """
 # -*- coding: utf-8 -*-
 from configparser import ConfigParser
-from public.read_path import CONFIGINI_PATH
+from public.read_path import CONFIG_INI_PATH
 
 
 class ReadConfig(object):
     def __init__(self):
         # 读取config.ini配置文件
         self.config = ConfigParser()
-        self.config.read(CONFIGINI_PATH, encoding='UTF-8')
+        self.config.read(CONFIG_INI_PATH, encoding='UTF-8')
 
     @property
     def get_url(self):
@@ -52,3 +52,19 @@ class ReadConfig(object):
     def get_mysql_charset(self):
         get_mysql_charset = self.config.get("mysql_con", "mysql_charset")
         return get_mysql_charset
+
+    @property
+    def get_from_email(self):
+        get_from_email = self.config.get("email", "from_email")
+        return get_from_email
+
+    @property
+    def get_to_email(self):
+        get_to_email = self.config.get("email", "from_email")
+        return get_to_email
+
+    @property
+    def get_to_port(self):
+        get_to_port = self.config.get("email", "to_port")
+        return get_to_port
+
