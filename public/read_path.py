@@ -13,7 +13,7 @@ sys.path.append(BASE_PATH)
 # config下config.ini文件路
 CONFIG_INI_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "config.ini"
 # config下email文件路径
-EMAIL_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "email.py"
+EMAIL_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "sendemail.py"
 
 # testcase_yaml模块
 # testcase_yaml文件夹路径

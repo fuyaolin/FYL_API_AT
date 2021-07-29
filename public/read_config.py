@@ -14,7 +14,7 @@ class ReadConfig(object):
 
     @property
     def get_url(self):
-        get_url = self.config.get("link","url")
+        get_url = self.config.get("link", "url")
         return get_url
 
     @property
@@ -54,17 +54,37 @@ class ReadConfig(object):
         return get_mysql_charset
 
     @property
-    def get_from_email(self):
-        get_from_email = self.config.get("email", "from_email")
-        return get_from_email
+    def get_email_sender(self):
+        get_email_sender = self.config.get("email", "sender")
+        return get_email_sender
 
     @property
-    def get_to_email(self):
-        get_to_email = self.config.get("email", "from_email")
-        return get_to_email
+    def get_email_sender_username(self):
+        get_email_sender_username = self.config.get("email", "sender_username")
+        return get_email_sender_username
 
     @property
-    def get_to_port(self):
-        get_to_port = self.config.get("email", "to_port")
-        return get_to_port
+    def get_email_sender_password(self):
+        get_email_sender_password = self.config.get("email", "sender_password")
+        return get_email_sender_password
+
+    @property
+    def get_email_receiver(self):
+        get_email_receiver = self.config.get("email", "receiver")
+        return get_email_receiver
+
+    @property
+    def get_email_CC(self):
+        get_email_CC = self.config.get("email", "CC")
+        return get_email_CC
+
+    @property
+    def get_smtp_server(self):
+        get_smtp_server = self.config.get("email", "smtp_server")
+        return get_smtp_server
+
+    @property
+    def get_smtp_port(self):
+        get_smtp_port = self.config.get("email", "smtp_port")
+        return get_smtp_port
 

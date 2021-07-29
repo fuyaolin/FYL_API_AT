@@ -38,13 +38,13 @@ class Params(object):
         body = self.params[case]['request']['body']
         check = self.params[case]['request']['check']
         if method == ('get' or 'GET'):
-            YamlRequest(headers, url, body).yaml_get()
+            YamlRequest(headers, url, body, check).yaml_get()
         elif method == ('post' or 'POST'):
-            YamlRequest(headers, url, body).yaml_post()
+            YamlRequest(headers, url, body, check).yaml_post()
         elif method == ('put' or 'PUT'):
-            YamlRequest(headers, url, body).yaml_put()
+            YamlRequest(headers, url, body, check).yaml_put()
         elif method == ('delete' or 'DELETE'):
-            YamlRequest(headers, url, body).yaml_delete()
+            YamlRequest(headers, url, body, check).yaml_delete()
         else:
             Exception('请输入正确的请求方法')
 

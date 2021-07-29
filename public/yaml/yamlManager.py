@@ -2,10 +2,11 @@ import requests
 
 
 class YamlRequest(object):
-    def __init__(self, url, headers, body):
+    def __init__(self, url, headers, body, check):
         self.url = url
         self.headers = headers
         self.body = body
+        self.check= check
 
     def yaml_get(self):
         requests.get(headers=self.headers, url=self.url, body=self.body)
