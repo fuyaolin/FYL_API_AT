@@ -2,7 +2,7 @@
     连接数据库
 """
 import pymysql
-from public.read_config import ReadConfig
+from common.read_config import ReadConfig
 
 
 class Mysql_Ope():

@@ -2,7 +2,7 @@
     读取用例
 """
 import os
-from public.yaml.yamlParams import Params
+from common.yaml.yamlParams import Params
 
 
 class ReadCase(object):
@@ -12,5 +12,5 @@ class ReadCase(object):
     def readcase(self):
         if not os.path.exists(self.path):
             Exception("测试用例路径不存在："+self.path)
-        CASE = Params(self.path).yaml_params_first()
-        return CASE
+        runcase = Params(self.path).yaml_params_first()
+        return runcase

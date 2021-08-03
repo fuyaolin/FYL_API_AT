@@ -1,5 +1,5 @@
 from pathlib import Path
-from public.read_path import TESTCASE_YAML_PATH
+from common.read_path import TESTCASE_YAML_PATH
 import os
 
 
@@ -15,7 +15,7 @@ def update_path():
             path_lis.append(str(s))
 
     f.write('\n"""测试用例路径"""\n\n')
-    f.write('from public.read_path import BASE_PATH\n')
+    f.write('from common.read_path import BASE_PATH\n')
     f.write('import os\n\n\n')
 
     # 把测试用例路径写如read_path文件中
