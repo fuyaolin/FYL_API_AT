@@ -18,3 +18,6 @@ EMAIL_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "sendemail.py"
 # testcase_yaml模块
 # testcase_yaml文件夹路径
 TESTCASE_YAML_PATH = BASE_PATH + os.path.sep + "testcase_yaml"
+
+# 报告路径
+REPORT_PATH = 1

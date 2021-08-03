@@ -21,4 +21,3 @@ class ReadYaml(object):
         with open(self.yaml_file, encoding='utf-8') as f:
             value = yaml.load(f, Loader=yaml.FullLoader)
             return value
-

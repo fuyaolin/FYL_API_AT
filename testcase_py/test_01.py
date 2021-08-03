@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-import requests
-import os
-from public.yaml.yamlUtil import ReadYaml
+from public.yaml.yamlManager import ReadCase
+
+
+PATH = __file__.replace("py", "yaml")
+params = ReadCase(PATH).readcase()
 
 
 class TestApi():
-    @pytest.mark.parametrize('args', ReadYaml(os.getcwd()+'\\test01.yaml').read_yaml())
-    def test_01(self, args):
-        url = args['request']['url']
-        params = args['request']['params']
-        headers = args['request']['headers']
-        response = requests.post(url, params=params, headers=headers)
-        print(response)
-        print(response.text)
+    @pytest.mark.parametrize('case', params)
+    def test_01(self):
+        pass
+        # Params(PATH).yaml_params()
 
-# if __name__ == '__main__':
-    # pytest.main(['-vs'])
+
+if __name__ == '__main__':
+    pytest.main(['-vs'])

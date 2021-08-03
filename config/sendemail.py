@@ -6,8 +6,10 @@ from public.read_config import ReadConfig
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-# from email.mime.image import MIMEImage
+from email.mime.application import MIMEApplication
 from email.header import Header
+# 报告路径
+from public.read_path import REPORT_PATH
 
 # smtp服务器，端口
 smtp_server = ReadConfig().get_smtp_server
@@ -32,14 +34,20 @@ message['From'] = sender
 # 接收方
 # message['To'] = ",".join(receiver)
 # 接收抄送
-# message['CC'] = CC
+message['CC'] = CC
 # 主题
 message['Subject'] = Header(mail_title, "utf-8")
 # 构建纯文本的邮件内容
-message.attach(MIMEText(mail_content, 'plain', 'utf-8'))
+message.attach(MIMEText(mail_content, 'html', 'utf-8'))
 
-# 发送附件
-
+# # 发送附件
+# attachment = MIMEApplication(open(REPORT_PATH, 'rb').read())
+# attachment["Content-Type"] = 'application/octet-stream'
+# # 给附件重命名
+# basename = "at_report.html"
+# # 注意：此处basename要转换为gbk编码，否则中文会有乱码。
+# attachment.add_header('Content-Dispositon', 'attachment', filename=('utf-8', '', basename))
+# message.attach(attachment)
 
 # 开启发信服务
 server = smtplib.SMTP_SSL(smtp_server, smtp_port)
