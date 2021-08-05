@@ -6,15 +6,18 @@ testcase:
     name: 上海
     title: 上海天气
     request:
-      url: https://api.yonyoucloud.com/apis/dst/weatherResearch/weatherCurrent
+      url: http://192.168.84.26:30000/at*/_search?size=1
       method: get
       headers:
-        authoration: apicode
-        apicode: 687d66c5e2314963a33cfb5e4093c335
       body:
-        city: 110101
       check:
-      - eq: {status: 1}
+        eq:
+        - status: 1
+        - failed: 200
+        lt:
+        - @timestamp: 2
+        in:
+        - @timestamp: 1
   Case2:
     skip: FLASE
     name: 北京

@@ -43,5 +43,3 @@ class Params(object):
             check = self.params['testcase'][index]['request']['check']
 
             YamlRequest(method=method, headers=headers, url=url, json_body=json_body, check=check).yaml_request()
-
-

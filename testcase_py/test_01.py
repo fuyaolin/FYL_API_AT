@@ -4,9 +4,10 @@ import pytest
 from common.yaml.yamlManager import ReadCase
 from common.yaml.yamlParams import Params
 
+
 PATH = __file__.replace("py", "yaml")
 params = ReadCase(PATH).readcase()
-
+# print(PATH)
 
 class TestApi():
     @pytest.mark.parametrize('case', params)
