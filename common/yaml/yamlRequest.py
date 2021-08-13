@@ -44,14 +44,11 @@ class YamlRequest(object):
     def res(self, res):
         value = res.text
         code = res.status_code
-        print(code, value)
-        AssertResult(check=self.check, value=value, code=code).compare()
+        if self.check is None:
+            pass
+        else:
+            AssertResult(check=self.check, value=value, code=code).expected()
 
-
-# if __name__ == '__main__':
-#     check1 = {'eq': [{'status': 1}, {'status': 200}], 'lt': [{'status': 2}]}
-#     url1 = 'http://192.168.84.26:30000/at*/_search?size=1'
-#     YamlRequest(method='get', url=url1, headers=None, json_body=None, check=check1).yaml_request()
 
 
 

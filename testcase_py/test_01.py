@@ -7,13 +7,12 @@ from common.yaml.yamlParams import Params
 
 PATH = __file__.replace("py", "yaml")
 params = ReadCase(PATH).readcase()
-# print(PATH)
+print(params)
 
 class TestApi():
     @pytest.mark.parametrize('case', params)
     def test_01(self, case):
         Params(PATH).yaml_params_second(case)
-
 
 if __name__ == '__main__':
     pytest.main(['-vs'])

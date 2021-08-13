@@ -11,13 +11,14 @@ testcase:
       headers:
       body:
       check:
-        eq:
-        - status: 1
-        - failed: 200
-        lt:
-        - @timestamp: 2
-        in:
-        - @timestamp: 1
+      - eq:
+        - status,1
+        - _shards.successful,200
+      - lt:
+        - hits.hits._source.@timestamp, 2
+      - in:
+        - status,2
+
   Case2:
     skip: FLASE
     name: 北京
