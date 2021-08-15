@@ -14,13 +14,13 @@ class YamlRequest(object):
         self.check = check
 
     def yaml_request(self):
-        if self.method == 'get' or 'GET':
+        if self.method == ('get' or 'GET'):
             self.yaml_get()
-        elif self.method == 'post' or 'POST':
+        elif self.method == ('post' or 'POST'):
             self.yaml_post()
-        elif self.method == 'put' or 'PUT':
+        elif self.method == ('put' or 'PUT'):
             self.yaml_put()
-        elif self.method == 'delete' or 'DELETE':
+        elif self.method == ('delete' or 'DELETE'):
             self.yaml_delete()
         else:
             return "请输入正确的请求"
@@ -48,8 +48,3 @@ class YamlRequest(object):
             pass
         else:
             AssertResult(check=self.check, value=value, code=code).expected()
-
-
-
-
-

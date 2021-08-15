@@ -31,7 +31,6 @@ class AssertResult(object):
             # expected_value是预期的value
             expected_key =index.split(',')[0]
             expected_value = index.split(',')[-1]
-            # print(expected_key, expected_value)
             if expected_key == ('status' or 'STATUS'):
                 self.rule.get(key)(actual_value=int(self.actual_code), expect_value=int(expected_value))
             else:

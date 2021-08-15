@@ -14,8 +14,15 @@ class ReadConfig(object):
 
     @property
     def get_url(self):
-        get_url = self.config.get("link", "url")
-        return get_url
+        get_ip_url = self.get_trans + "://" + self.get_ip + ":" + self.get_port
+        if get_ip_url == "://:":
+            get_ip_url = None
+        return get_ip_url
+
+    @property
+    def get_trans(self):
+        get_trans = self.config.get("link", "trans")
+        return get_trans
 
     @property
     def get_ip(self):
@@ -25,8 +32,7 @@ class ReadConfig(object):
     @property
     def get_port(self):
         get_port = self.config.get("link", "port")
-        get_port = int(get_port)
-        return int(get_port)
+        return get_port
 
     @property
     def get_mysql_port(self):
@@ -87,4 +93,3 @@ class ReadConfig(object):
     def get_smtp_port(self):
         get_smtp_port = self.config.get("email", "smtp_port")
         return get_smtp_port
-

@@ -6,7 +6,7 @@ testcase:
     name: 上海
     title: 上海天气
     request:
-      url: http://192.168.84.26:30000/at*/_search?size=1
+      url: /at*/_search?size=1
       method: get
       headers:
       body:
@@ -24,7 +24,7 @@ testcase:
     name: 北京
     title: 北京天气
     request:
-      url: https://api.yonyoucloud.com/apis/dst/weatherResearch/weatherCurrent
+      url: /apis/dst/weatherResearch/weatherCurrent
       method: get
       headers:
         authoration: apicode
