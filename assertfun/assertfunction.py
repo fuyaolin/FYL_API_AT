@@ -1,5 +1,5 @@
 import jsonpath
-import numpy as np
+
 
 class AssertResult(object):
     def __init__(self, check, value, code):
@@ -18,8 +18,8 @@ class AssertResult(object):
 
     # 遍历输入的结果
     def expected(self):
-        for comparevalue in self.expected_check:
-            for key, value in comparevalue.items():
+        for compare_value in self.expected_check:
+            for key, value in compare_value.items():
                 if key in self.rule.keys():
                     self.handle_values(key, value)
                 else:
@@ -29,7 +29,7 @@ class AssertResult(object):
         for index in value:
             # expected_key是预期的key
             # expected_value是预期的value
-            expected_key =index.split(',')[0]
+            expected_key = index.split(',')[0]
             expected_value = index.split(',')[-1]
             if expected_key == ('status' or 'STATUS'):
                 self.rule.get(key)(actual_value=int(self.actual_code), expect_value=int(expected_value))
@@ -44,7 +44,6 @@ class AssertResult(object):
                     actually_value = str(actually_value)
                     expected_value = str(expected_value)
                 self.rule.get(key)(actual_value=actually_value, expect_value=expected_value)
-
 
     @staticmethod
     def _eq(expect_value, actual_value):
@@ -66,11 +65,10 @@ class AssertResult(object):
     def _lt(expect_value, actual_value):
         assert actual_value < expect_value
 
-
     @staticmethod
     def _le(expect_value, actual_value):
         assert actual_value <= expect_value
 
     @staticmethod
     def _in(expect_value, actual_value):
-        assert actual_value in expect_value
+        assert actual_value in str(expect_value)
