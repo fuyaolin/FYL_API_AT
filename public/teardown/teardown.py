@@ -1,0 +1,3 @@
+
+def teardown():
+    return 'TEARDOWN'

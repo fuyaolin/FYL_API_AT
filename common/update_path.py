@@ -4,8 +4,8 @@ import os
 
 
 def update_path():
-    PATH = os.path.abspath(os.path.dirname(__file__)) + os.path.sep + "testcase_path.py"
-    f = open(PATH, 'w', encoding="utf-8")
+    py_path = os.path.abspath(os.path.dirname(__file__)) + os.path.sep + "testcase_path.py"
+    f = open(py_path, 'w', encoding="utf-8")
 
     # 遍历testcase_yaml文件下所有的yaml文件路径
     path_lis = []
@@ -22,11 +22,12 @@ def update_path():
     for i in range(len(path_lis)):
         if path_lis[i].endswith(".yaml"):
             temp = path_lis[i].split("\\")[3:]
-            PATH = ''
+            py_path = ''
             for j in temp:
-                PATH = PATH + " + os.path.sep + "
-                PATH = PATH + "'" + j + "'"
-            f.write("TESTCASE_YAML_" + str(temp[-1]).split('.')[0].upper() + "_PATH = BASE_PATH + " + "os.path.sep + " + "'testcase_yaml'" + PATH)
+                py_path = py_path + " + os.path.sep + "
+                py_path = py_path + "'" + j + "'"
+            f.write("TESTCASE_YAML_" + str(temp[-1]).split('.')[0].upper() + "_PATH = BASE_PATH + " + "os.path.sep + "
+                    + "'testcase_yaml'" + py_path)
             f.write('\n')
 
     f.close()

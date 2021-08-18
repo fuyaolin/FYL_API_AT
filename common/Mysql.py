@@ -5,12 +5,8 @@ import pymysql
 from common.read_config import ReadConfig
 
 
-class Mysql_Ope():
+class Mysql_Ope(object):
     def __init__(self):
-        pass
-
-    # 连接数据库
-    def mysql_ope_connection(self):
         self.conn = pymysql.connect(
             host=ReadConfig().get_ip,
             port=ReadConfig().get_mysql_port,
@@ -23,7 +19,6 @@ class Mysql_Ope():
 
     # 查询数据库
     def mysql_ope_select(self, select_sql):
-        self.mysql_ope_connection()
         self.cursor.execute(select_sql)
         self.cursor.fetchone()
         self.mysql_ope_close()

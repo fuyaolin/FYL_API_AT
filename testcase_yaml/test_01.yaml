@@ -6,7 +6,7 @@ testcase:
     name: 上海
     title: 上海天气
     request:
-      url: /at*/_search?size=1
+      url: /apis/dst/weatherResearch/weatherCurrent
       method: get
       headers:
       body:
