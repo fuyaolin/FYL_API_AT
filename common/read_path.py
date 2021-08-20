@@ -19,6 +19,9 @@ EMAIL_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "sendemail.py"
 # testcase_yaml文件夹路径
 TESTCASE_YAML_PATH = BASE_PATH + os.path.sep + "testcase_yaml"
 
+
 # allure报告路径
 REPORT_HTML_PATH = BASE_PATH + os.path.sep + "report_allure" + os.path.sep + "html"
 REPORT_RESULT_PATH = BASE_PATH + os.path.sep + "report_allure" + os.path.sep + "result"
+# log日志报告路径
+LOGS_PATH = BASE_PATH + os.path.sep + "logs"

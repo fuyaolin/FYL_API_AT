@@ -1,35 +1,41 @@
 order_by: []
 all_skip: false
+headers:
+  authoration: apicode
+  apicode: 687d66c5e2314963a33cfb5e4093c335
+setup: setup
 testcase:
   Case1:
-    skip: false
+    skip: true
     name: 上海
     title: 上海天气
+    header:
+    setup:
+    teardown:
+    sleep:
     request:
       url: /apis/dst/weatherResearch/weatherCurrent
       method: get
       headers:
       body:
-      check:
-      - eq:
-        - status,1
-        - _shards.successful,200
-      - lt:
-        - hits.hits._source.@timestamp, 2
-      - in:
-        - status,2
+    check:
+    - eq:
+      - status,1
+      - _shards.successful,200
+    - lt:
+      - hits.hits._source.@timestamp, 2
+    - in:
+      - status,2
 
   Case2:
     skip: FLASE
     name: 北京
     title: 北京天气
+    teardown: teardown
     request:
       url: /apis/dst/weatherResearch/weatherCurrent
       method: get
-      headers:
-        authoration: apicode
-        apicode: 687d66c5e2314963a33cfb5e4093c335
       body:
         city: 110101
-      check:
-      - eq: {status: 1}
+    check:
+    - eq: {status: 1}

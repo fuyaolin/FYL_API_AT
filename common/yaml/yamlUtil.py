@@ -2,6 +2,8 @@
     解读yaml文件
 """
 import yaml
+import traceback
+import os
 
 
 class ReadYaml(object):
@@ -18,6 +20,13 @@ class ReadYaml(object):
         读取yaml，对yaml反序列化
         :return:
         """
-        with open(self.yaml_file, encoding='utf-8') as f:
-            value = yaml.load(f, Loader=yaml.FullLoader)
-            return value
+        if os.path.exists(self.yaml_file) and os.path.getsize(self.yaml_file) != 0:
+           try:
+                with open(self.yaml_file, encoding='utf-8') as f:
+                    yaml_value = yaml.load(f, Loader=yaml.FullLoader)
+                    return yaml_value
+           except:
+               traceback.print_exc()
+        else:
+            traceback.print_exc()
+
