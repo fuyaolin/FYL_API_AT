@@ -21,12 +21,11 @@ class ReadYaml(object):
         :return:
         """
         if os.path.exists(self.yaml_file) and os.path.getsize(self.yaml_file) != 0:
-           try:
+            try:
                 with open(self.yaml_file, encoding='utf-8') as f:
                     yaml_value = yaml.load(f, Loader=yaml.FullLoader)
                     return yaml_value
-           except:
-               traceback.print_exc()
+            except FileNotFoundError:
+                traceback.print_exc()
         else:
             traceback.print_exc()
-

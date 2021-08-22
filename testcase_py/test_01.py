@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-import allure
-from common.yaml.yamlParams import Params
-from common.yaml.yamlUtil import ReadYaml
-from common.log import Logger
+from common.yamlParams import Params
+from common.yamlUtil import ReadYaml
 
 PATH = __file__.replace("py", "yaml")
 value = ReadYaml(PATH).read_yaml()
