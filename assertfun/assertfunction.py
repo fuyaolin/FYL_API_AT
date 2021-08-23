@@ -38,17 +38,18 @@ class AssertResult(object):
             if expected_key == ('status' or 'STATUS'):
                 self.rule.get(key)(actual_value=int(self.actual_code), expect_value=int(expected_value))
             else:
-                # actually_value 是预期的key 在实际返回json中的值
-                # actually_key 是预期的key 在实际返回json中jsonpath路径
+                # actually_value 是预期的key 在实际返回json中的值，即实际key
+                # actually_key 是预期的key 在实际返回json中jsonpath路径，即实际value
                 actually_key = '$..' + expected_key
-                if jsonpath.jsonpath(self.actual_value, actually_key):
+                if jsonpath.jsonpath(eval(self.actual_value), actually_key):
                     # 返回实际值进行比较
-                    actually_value = jsonpath.jsonpath(self.actual_value, actually_key)[0]
+                    actually_value = jsonpath.jsonpath(eval(self.actual_value), actually_key)[0]
                     # 统一类型
                     if expected_value == "*":
                         # 预期值为*，代表对比返回参数的key
                         Logger().logs_file().debug(expected_key+"此参数在返回值，查询成功")
                         assert True
+                        continue
                     elif type(actually_value) is int:
                         expected_value = int(expected_value)
                     else:
@@ -57,40 +58,40 @@ class AssertResult(object):
                     # 进行比较
                     self.rule.get(key)(actual_value=actually_value, expect_value=expected_value)
                 else:
-                    Logger().logs_file().info(expected_key+"此参数未在返回值中")
+                    Logger().logs_file().info(str(expected_key)+"此参数未在返回值中,actual_value:"+str(self.actual_value))
                     assert False
 
     @staticmethod
     def _eq(expect_value, actual_value):
-        Logger().logs_file().info("actual_value"+str(expect_value)+"expect_value"+str(expect_value))
+        Logger().logs_file().info("actual_value:" + str(expect_value) + ",expect_value:" + str(expect_value))
         assert actual_value == expect_value
 
     @staticmethod
     def _ne(expect_value, actual_value):
-        Logger().logs_file().info("actual_value" + str(expect_value) + "expect_value" + str(expect_value))
+        Logger().logs_file().info("actual_value:" + str(expect_value) + ",expect_value:" + str(expect_value))
         assert actual_value != expect_value
 
     @staticmethod
     def _gt(expect_value, actual_value):
-        Logger().logs_file().info("actual_value" + str(expect_value) + "expect_value" + str(expect_value))
-        assert actual_value > expect_value
+        Logger().logs_file().info("actual_value:" + str(expect_value) + ",expect_value:" + str(expect_value))
+        assert expect_value > actual_value
 
     @staticmethod
     def _ge(expect_value, actual_value):
-        Logger().logs_file().info("actual_value" + str(expect_value) + "expect_value" + str(expect_value))
-        assert actual_value >= expect_value
+        Logger().logs_file().info("actual_value:" + str(expect_value) + ",expect_value:" + str(expect_value))
+        assert expect_value >= actual_value
 
     @staticmethod
     def _lt(expect_value, actual_value):
-        Logger().logs_file().info("actual_value" + str(expect_value) + "expect_value" + str(expect_value))
-        assert actual_value < expect_value
+        Logger().logs_file().info("actual_value:" + str(expect_value) + ",expect_value:" + str(expect_value))
+        assert expect_value < actual_value
 
     @staticmethod
     def _le(expect_value, actual_value):
-        Logger().logs_file().info("actual_value" + str(expect_value) + "expect_value" + str(expect_value))
-        assert actual_value <= expect_value
+        Logger().logs_file().info("actual_value:" + str(expect_value) + ",expect_value:" + str(expect_value))
+        assert expect_value <= actual_value
 
     @staticmethod
     def _in(expect_value, actual_value):
-        Logger().logs_file().info("actual_value" + str(expect_value) + "expect_value" + str(expect_value))
-        assert actual_value in str(expect_value)
+        Logger().logs_file().info("actual_value:" + str(expect_value) + ",expect_value:" + str(expect_value))
+        assert str(expect_value) in actual_value

@@ -1,22 +1,20 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from common.yamlParams import Params
-from common.yamlUtil import ReadYaml
+from common.datamaneger import DataManager
 
 PATH = __file__.replace("py", "yaml")
-value = ReadYaml(PATH).read_yaml()
-case = Params(value).yaml_params_case()
+CASE = DataManager().case(PATH)
 skip_reason = PATH + "(testcase skip)"
 
 
 # @allure.story('')
 class TestApi(object):
-    @pytest.mark.skipif(len(case) == 0, reason=skip_reason)
+    @pytest.mark.skipif(len(CASE) == 0, reason=skip_reason)
     # @allure.story('')
-    @pytest.mark.parametrize('case', case)
+    @pytest.mark.parametrize('case', CASE)
     def test_01(self, case):
-        Params(value).yaml_params_split(case)
+        DataManager().run(path=PATH, case=case)
 
 
 if __name__ == '__main__':
