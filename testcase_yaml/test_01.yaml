@@ -1,7 +1,6 @@
-order_by: []
+order_by: [Case1]
 all_skip: FLASE
-headers:
-
+setup: setup_file.setup_function
 testcase:
   Case1:
     skip: false
@@ -17,9 +16,10 @@ testcase:
           - status,200
 
   Case2:
-    skip: false
+    skip: true
     name: 告警事件审查
     title: 批量获取
+    setup: set2.setup
     request:
       url: http://10.4.105.103/api/v1/kai/entities/entity
       method: post

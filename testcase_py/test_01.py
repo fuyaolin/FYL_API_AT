@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from common.datamaneger import DataManager
+from common.datamaneger import Runcase
 
 PATH = __file__.replace("py", "yaml")
-CASE = DataManager().case(PATH)
+CASE = Runcase().case(PATH)
 skip_reason = PATH + "(testcase skip)"
 
 
@@ -14,7 +14,7 @@ class TestApi(object):
     # @allure.story('')
     @pytest.mark.parametrize('case', CASE)
     def test_01(self, case):
-        DataManager().run(path=PATH, case=case)
+        Runcase().run(path=PATH, case=case)
 
 
 if __name__ == '__main__':

@@ -1,7 +1,7 @@
 """
     解读yaml参数
     现存问题：
-            前后置如何执行？ 直接调用就可以
+            后置在什么位置执行？前后置函数如何自动执行？
             参数如何关联？
             返回参数中文件下载和请求参数中的文件/图片上传？
             excel表格上传生成yaml文件？
@@ -10,10 +10,11 @@
             随机数什么的
 """
 import pytest
+import time
 from common.log import Logger
 from common.read_config import ReadConfig
 from common.request import YamlRequest
-from common.prefixed import Prefixed
+from public.prefixed import Prefixed
 
 
 class Params(object):
@@ -48,24 +49,31 @@ class Params(object):
         # 整个测试用例不跳过，单个用例有执行顺序，按照执行顺序执行
         else:
             self.runcase = self.order_by
+        # 执行整个测试用例前置
+        self.yaml_setup()
         Logger().logs_file().debug("执行用例顺序为：" + str(self.runcase))
+        Logger().logs_cmd().debug("执行用例顺序为：" + str(self.runcase))
         return self.runcase
 
     def yaml_setup(self):
         if self.params['all_skip'] != 1 and 'setup' in self.params.keys():
-            Prefixed().exe_prefixed()
+            prefixed_value = self.params['setup']
+            Prefixed(prefixed_value).exe_prefixed()
 
     def yaml_teardown(self):
         if self.params['all_skip'] != 1 and 'teardown' in self.params.keys():
-            Prefixed().exe_suffixed()
+            teardown_value = self.params['teardown']
+            Prefixed(teardown_value).exe_suffixed()
 
     def yaml_index_setup(self, index):
-        if self.params['testcase'][index]['setup']:
-            Prefixed().exe_prefixed()
+        if self.params['testcase'][index]['skip'] != 1 and 'setup' in self.params['testcase'][index].keys():
+            prefixed_value = self.params['testcase'][index]['setup']
+            Prefixed(prefixed_value).exe_prefixed()
 
     def yaml_index_teardown(self, index):
-        if self.params['testcase'][index]['teardown']:
-            Prefixed().exe_suffixed()
+        if self.params['testcase'][index]['skip'] != 1 and 'teardown' in self.params['testcase'][index].keys():
+            teardown_value = self.params['testcase'][index]['teardown']
+            Prefixed(teardown_value).exe_suffixed()
 
     # 测试用例接口参数
     def yaml_params_split(self, index):
@@ -75,6 +83,10 @@ class Params(object):
             if skip == 1:
                 pytest.skip("测试用例开关未开启")
                 Logger().logs_file().debug(str(index) + "测试用例开关未开启")
+        # 休眠参数，可不存在
+        if 'sleep' in self.params['testcase'][index].keys():
+            sleep_time = self.params['testcase'][index]['sleep']
+            time.sleep(sleep_time)
         # 此参数必须存在
         if self.params['testcase'][index]['name']:
             self.name = self.params['testcase'][index]['name']
@@ -91,12 +103,12 @@ class Params(object):
             else:
                 self.url = url
         else:
-            pytest.xfail(reason="name:"+self.name+",title:"+self.title+"请加入请求地址url参数")
+            pytest.xfail(reason="name:"+str(self.name)+",title:"+str(self.title)+"请加入请求地址url参数")
         # 请求方法，不可为空
         if self.params['testcase'][index]['request']['method']:
             self.method = self.params['testcase'][index]['request']['method']
         else:
-            pytest.xfail(reason="name:"+self.name+",title:"+self.title+"请加入请求方法method参数")
+            pytest.xfail(reason="name:"+str(self.name)+",title:"+str(self.title)+"请加入请求方法method参数")
         # 请求body,可不存在
         if "body" in self.params['testcase'][index]['request'].keys():
             self.body = self.params['testcase'][index]['request']['body']
