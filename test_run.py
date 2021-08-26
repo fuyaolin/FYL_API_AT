@@ -5,10 +5,6 @@
 # #
 # # if __name__ == '__main__':
 # #     pytest.main('--alluredir={dir}'.format(dir=REPORT_RESULT_PATH), '--clean-alluredir')
-#
-# import os
-#
-# os.system()
 
 
 """

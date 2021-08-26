@@ -33,4 +33,3 @@ EXCEL_PATH = BASE_PATH + os.path.sep + "excel"
 # allure报告路径
 REPORT_HTML_PATH = BASE_PATH + os.path.sep + "report_allure" + os.path.sep + "html"
 REPORT_RESULT_PATH = BASE_PATH + os.path.sep + "report_allure" + os.path.sep + "result"
-

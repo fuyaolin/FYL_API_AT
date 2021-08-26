@@ -1,0 +1,15 @@
+all_skip: 'false'
+order_by: []
+testcase:
+  Case1:
+    check:
+    - eq:
+      - count,1
+    name: 告警事件审查
+    request:
+      body:
+        a: b
+      method: get
+      url: /api/v1
+    skip: false
+    title: 批量获取

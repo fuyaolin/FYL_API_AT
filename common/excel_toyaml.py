@@ -70,7 +70,7 @@ class DoExcel(ReadExcel):
                     method = value["method"]
                     json_data['testcase'][case]['request']['method'] = method
                 if "body" in value.keys() and value["body"] is not None:
-                    body = value["body"]
+                    body = eval(value["body"])
                     json_data['testcase'][case]['request']['body'] = body
 
                 json_data['testcase'][case]['check'] = []
@@ -87,11 +87,9 @@ class DoExcel(ReadExcel):
                     if sheet == sheet_data[val+1][0]:
                         json_data = json_data
                     else:
-                        # print(json_data)
                         self.toyaml(filename, json_data)
                         json_data = copy.deepcopy(self.json)
                 else:
-                    # print(json_data)
                     self.toyaml(filename, json_data)
 
     @staticmethod

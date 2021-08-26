@@ -15,7 +15,6 @@ class ReadExcel:
             os.makedirs(self.EXCEL_PATH)
             raise(self.EXCEL_PATH+"路径不存在")
 
-
     # 读取excel表格路径
     def read_excel_path(self):
         excels_path = []
@@ -37,5 +36,5 @@ class ReadExcel:
                             key = sheet.cell(row=1, column=col).value
                             self.data[key] = sheet.cell(row=row, column=col).value
                         data = copy.deepcopy(self.data)
-                        self.subdata.append([excel_sheet,data])
+                        self.subdata.append([excel_sheet, data])
             return self.subdata
