@@ -1,5 +1,5 @@
 order_by: [Case1]
-all_skip: FLASE
+all_skip: false
 setup: setup_file.setup_function
 testcase:
   Case1:

@@ -10,7 +10,13 @@
 #
 # os.system()
 
-import jsonpath
-actually_key = "$..entityId"
-actual_value = {"entityId":41,"success":1}
-print(jsonpath.jsonpath(actual_value, actually_key))
+
+"""
+    现存问题：
+        后置在什么位置执行？前后置函数如何自动执行exec未执行？
+        参数如何关联？
+        返回参数中文件下载和请求参数中的文件/图片上传？
+        报告的生成？
+        自动生成同名py文件？
+        随机数什么的
+"""

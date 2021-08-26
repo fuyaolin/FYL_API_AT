@@ -9,7 +9,7 @@ skip_reason = PATH + "(testcase skip)"
 
 
 # @allure.story('')
-class TestApi(object):
+class Test_01(object):
     @pytest.mark.skipif(len(CASE) == 0, reason=skip_reason)
     # @allure.story('')
     @pytest.mark.parametrize('case', CASE)

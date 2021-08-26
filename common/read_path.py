@@ -6,7 +6,7 @@ import sys
 
 
 BASE_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-# # 添加为全局变量
+# 添加为全局变量
 sys.path.append(BASE_PATH)
 
 # config模块
@@ -24,8 +24,13 @@ SETUP_PATH = BASE_PATH + os.path.sep + "public" + os.path.sep + "setup"
 # 后置文件路径
 TEARDOWN_PATH = BASE_PATH + os.path.sep + "public" + os.path.sep + "teardown"
 
+# log日志报告路径
+LOGS_PATH = BASE_PATH + os.path.sep + "logs"
+
+# excel表格路径
+EXCEL_PATH = BASE_PATH + os.path.sep + "excel"
+
 # allure报告路径
 REPORT_HTML_PATH = BASE_PATH + os.path.sep + "report_allure" + os.path.sep + "html"
 REPORT_RESULT_PATH = BASE_PATH + os.path.sep + "report_allure" + os.path.sep + "result"
-# log日志报告路径
-LOGS_PATH = BASE_PATH + os.path.sep + "logs"
+
