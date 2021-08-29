@@ -21,12 +21,20 @@ class Runcase(DataManager):
 
         return run_case
 
-    @staticmethod
-    def run(path, case):
-        value = Runcase.yamlvalue(path)
+    # 执行单个测试用例
+    def run(self, value, case):
         # 前置
         Params(value).yaml_index_setup(case)
         # 执行
         Params(value).yaml_params_split(case)
         # 后置
         Params(value).yaml_index_teardown(case)
+
+    def all_run(self, path, case):
+        value = Runcase.yamlvalue(path)
+        # 前置
+        Params(value).yaml_setup()
+        # 执行测试用例
+        self.run(value, case)
+        # 后置
+        Params(value).yaml_teardown()

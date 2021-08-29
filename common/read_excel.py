@@ -24,7 +24,6 @@ class ReadExcel:
                 excels_path.append(excel_path)
 
         for excel_file in excels_path:
-            data = {}
             excel_xlsx_file = openpyxl.load_workbook(excel_file, read_only=True)
             for excel_sheet in excel_xlsx_file.sheetnames:
                 sheet = excel_xlsx_file[excel_sheet]

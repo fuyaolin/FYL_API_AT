@@ -99,15 +99,15 @@ class DoExcel(ReadExcel):
             json_data = eval(json_data)
         # 写入yaml文件
         filepath = TESTCASE_YAML_PATH + os.sep + filename + ".yaml"
-        if os.path.exists(filepath):
-            os.remove(filepath)
         try:
             with open(filepath, "w") as f:
                 json_yaml = yaml.dump(json_data, default_flow_style=False, allow_unicode=True)
                 f.write(json_yaml)
-                f.close()
         except Exception:
             raise Exception("打开文件失败，文件路径：" + filepath)
+        finally:
+            f.close()
+
 
 
 if __name__ == '__main__':

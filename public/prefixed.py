@@ -21,7 +21,9 @@ class Prefixed(object):
                 dirs = 'setup' if root.split(os.path.sep)[-1] == 'setup' else 'teardown'
                 if str(self.prefixed_file+".py") in files:
                     # 目前无法调用
-                    exec('from public.{dirs}.{files} import {function}'.
+                    # exec('from public.{dirs}.{files} import {function}'.
+                    #      format(dirs=dirs, files=self.prefixed_file, function=self.prefixed_function))
+                    print('from public.{dirs}.{files} import {function}'.
                          format(dirs=dirs, files=self.prefixed_file, function=self.prefixed_function))
                     break
         else:

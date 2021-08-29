@@ -41,8 +41,6 @@ class Params(object):
         # 整个测试用例不跳过，单个用例有执行顺序，按照执行顺序执行
         else:
             self.runcase = self.order_by
-        # 执行整个测试用例前置
-        self.yaml_setup()
         Logger().logs_file().debug("执行用例顺序为：" + str(self.runcase))
         return self.runcase
 

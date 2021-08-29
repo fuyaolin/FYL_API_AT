@@ -14,7 +14,7 @@ class Test_01(object):
     # @allure.story('')
     @pytest.mark.parametrize('case', CASE)
     def test_01(self, case):
-        Runcase().run(path=PATH, case=case)
+        Runcase().all_run(path=PATH, case=case)
 
 
 if __name__ == '__main__':

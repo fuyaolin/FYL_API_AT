@@ -1,4 +1,4 @@
 from common.log import Logger
 
-def setup():
+def tear_fun():
     Logger().logs_file().debug("teardown")
