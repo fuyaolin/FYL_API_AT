@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-
 import pytest
 from common.datamaneger import Runcase
+from common.read_path import TESTCASE_YAML_NAME_PATH
 
-PATH = __file__.replace("py", "yaml")
+PATH = TESTCASE_YAML_NAME_PATH
 CASE = Runcase().case(PATH)
 skip_reason = PATH + "(testcase skip)"
 

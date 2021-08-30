@@ -15,9 +15,13 @@ CONFIG_INI_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "config.ini
 # config下email文件路径
 EMAIL_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "sendemail.py"
 
+# testcase_py文件夹路径
+TESTCASE_PY_PATH = BASE_PATH + os.path.sep + "testcase_py"
+
 # testcase_yaml模块
 # testcase_yaml文件夹路径
 TESTCASE_YAML_PATH = BASE_PATH + os.path.sep + "testcase_yaml"
+TESTCASE_YAML_NAME_PATH = TESTCASE_YAML_PATH + os.sep + os.path.basename(sys.argv[0]).split(".")[0] + ".yaml"
 
 # 前置文件路径
 SETUP_PATH = BASE_PATH + os.path.sep + "public" + os.path.sep + "setup"

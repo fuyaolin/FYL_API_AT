@@ -27,5 +27,7 @@ class ReadYaml(object):
                     return yaml_value
             except FileNotFoundError:
                 traceback.print_exc()
+            finally:
+                f.close()
         else:
             traceback.print_exc()

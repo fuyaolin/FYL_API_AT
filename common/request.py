@@ -34,19 +34,24 @@ class YamlRequest(object):
             pytest.xfail(reason="请输入正确的请求")
 
     def yaml_get(self):
-        res = requests.get(headers=self.headers, url=self.url, data=json.dumps(self.body))
+        # try:
+        #     res = requests.get(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
+        #     self.res(res)
+        # except requests.exceptions.ConnectTimeout:
+        #     pytest.xfail("请求超时")
+        res = requests.get(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
         self.res(res)
 
     def yaml_post(self):
-        res = requests.post(headers=self.headers, url=self.url, data=json.dumps(self.body))
+        res = requests.post(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
         self.res(res)
 
     def yaml_put(self):
-        res = requests.put(headers=self.headers, url=self.url, data=json.dumps(self.body))
+        res = requests.put(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
         self.res(res)
 
     def yaml_delete(self):
-        res = requests.delete(headers=self.headers, url=self.url, data=json.dumps(self.body))
+        res = requests.delete(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
         self.res(res)
 
     def res(self, res):
