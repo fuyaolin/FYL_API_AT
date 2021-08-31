@@ -1,8 +1,0 @@
-2021-08-30 15:15:58,580 - root - DEBUG - 执行用例顺序为：['Case1']
-2021-08-30 15:15:59,173 - root - DEBUG - 执行用例顺序为：['Case1']
-2021-08-30 15:15:59,220 - root - DEBUG - name:告警事件审查,title:批量获取
-2021-08-30 15:15:59,220 - root - DEBUG - method:get,url:http://10.4.98.86:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
-2021-08-30 15:21:10,725 - root - DEBUG - 执行用例顺序为：['Case1']
-2021-08-30 15:21:10,850 - root - DEBUG - 执行用例顺序为：['Case1']
-2021-08-30 15:21:10,850 - root - DEBUG - name:告警事件审查,title:批量获取
-2021-08-30 15:21:10,850 - root - DEBUG - method:get,url:http://10.4.98.86:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None

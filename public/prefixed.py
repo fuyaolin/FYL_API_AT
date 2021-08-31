@@ -4,6 +4,7 @@
 """
 import os
 import sys
+import importlib
 from common.log import Logger
 from common.read_path import SETUP_PATH, TEARDOWN_PATH
 
@@ -20,9 +21,13 @@ class Prefixed(object):
             for root, dirs, files in os.walk(file_path):
                 dirs = 'setup' if root.split(os.path.sep)[-1] == 'setup' else 'teardown'
                 if str(self.prefixed_file+".py") in files:
-                    import_exe = 'from public.{dirs}.{files} import {function}'.\
-                        format(dirs=dirs, files=self.prefixed_file, function=self.prefixed_function)
-                    exec(import_exe)
+                    import_exe = 'public.{dirs}.{files}'.format(dirs=dirs, files=self.prefixed_file)
+                    # 动态导入模板
+                    lib = importlib.import_module(import_exe)
+                    funcName = self.prefixed_function
+                    # 动态导入函数
+                    function = getattr(lib, funcName)
+                    function()
                     break
         else:
             Logger().logs_file().info("前置路径不存在：" + str(file_path))
@@ -34,7 +39,3 @@ class Prefixed(object):
     def exe_suffixed(self):
         sys.path.append(self.TEARDOWN_PATH)
         self.execute(self.TEARDOWN_PATH)
-
-
-if __name__ == '__main__':
-    Prefixed("setup_file.setup_function").exe_prefixed()
