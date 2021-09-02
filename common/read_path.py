@@ -9,9 +9,13 @@ BASE_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 # 添加为全局变量
 sys.path.append(BASE_PATH)
 
+# 测试用例统用模板
+TESTCASE_PY_TEMPLATE_PATH = BASE_PATH + os.sep + "common" + os.sep + "template" + os.sep + "testcase_py_template.txt"
+TESTCASE_YAML_TEMPLATE_PATH = BASE_PATH + os.sep + "common" + os.sep + "template" + os.sep +"testcase_yaml_template.yaml"
+
 # config模块
 # config下config.ini文件路
-CONFIG_INI_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "config.ini"
+CONFIG_INI_PATH = BASE_PATH + os.sep + "config" + os.sep + "config.ini"
 # config下email文件路径
 EMAIL_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "sendemail.py"
 

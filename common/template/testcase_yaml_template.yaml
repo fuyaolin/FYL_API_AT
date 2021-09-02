@@ -1,0 +1,22 @@
+all_skip:
+order_by: []
+headers:
+setup:
+teardown:
+testcase:
+  Case1:
+    name:
+    title:
+    skip:
+    setup:
+    teardown:
+    sleep:
+    request:
+      header:
+      url:
+      method:
+      body:
+        a:
+    check:
+    - eq:
+      -

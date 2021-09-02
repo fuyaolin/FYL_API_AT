@@ -1,13 +1,14 @@
-
+import re
 import os
 import glob
-from common.read_path import TESTCASE_PY_PATH, TESTCASE_YAML_PATH
+from common.read_path import TESTCASE_PY_PATH, TESTCASE_YAML_PATH, TESTCASE_PY_TEMPLATE_PATH
 
 
 class ExeFile(object):
     def __init__(self):
         self.TESTCASE_PY_PATH = TESTCASE_PY_PATH
         self.TESTCASE_YAML_PATH = TESTCASE_YAML_PATH
+        self.TESTCASE_PY_TEMPLATE_PATH = TESTCASE_PY_TEMPLATE_PATH
 
     @staticmethod
     def getAllFiles(path, suffix):
@@ -43,17 +44,43 @@ class ExeFile(object):
             new_py_path = py_path.replace(py_path.split("\\")[-1], "")
             if os.path.exists(new_py_path) is False:
                 os.mkdir(new_py_path)
-        # 执行脚本
-        execute_script = ""
         # 写入执行脚本
         try:
-            with open(py_path, "w", encoding='utf-8') as f:
-                f.write(execute_script)
+            old_str = '{}'
+            new_str = py_path.split('\\')[-2]
+            old_str1 = '$$'
+            new_str1 = py_path.split('\\')[-1]
+            with open(self.TESTCASE_PY_TEMPLATE_PATH, "r") as f1, open(py_path, "w", encoding='utf-8') as f2:
+                for line in f1:
+                    if old_str in line:
+                        line = line.replace(old_str, new_str)
+                    elif old_str1 in line:
+                        line = line.replace(old_str1, new_str1)
+                    f2.write(line)
             if os.path.relpath(py_path):
                 print("文件创建成功")
+        except Exception:
+            raise Exception ("文件创建失败:" + py_path)
         finally:
-            f.close()
+            f1.close()
+            f2.close()
 
 
 if __name__ == '__main__':
     ExeFile().dirCompare()
+
+# # 复制执行脚本
+# try:
+#     copy_file = open(self.TESTCASE_PY_TEMPLATE_PATH, "r")
+#     with open(py_path, "w", encoding='utf-8') as f:
+#         s = copy_file.read()
+#         f.write(s)
+#         copy_file.close()
+#     if os.path.relpath(py_path):
+#         print("文件创建成功")
+#     self.modify(py_path)
+# except Exception:
+#     raise Exception ("文件创建失败:" + py_path)
+# finally:
+#     f.close()
+

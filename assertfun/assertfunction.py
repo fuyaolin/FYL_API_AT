@@ -15,6 +15,7 @@ class AssertResult(object):
             "lt": self._lt,
             "le": self._le,
             "in": self._in,
+            "notin": self._notin,
         }
 
     # 遍历输入的结果
@@ -95,3 +96,8 @@ class AssertResult(object):
     def _in(expect_value, actual_value):
         Logger().logs_file().info("actual_value:" + str(actual_value) + ",expect_value:" + str(expect_value))
         assert str(expect_value) in actual_value
+
+    @staticmethod
+    def _notin(expect_value, actual_value):
+        Logger().logs_file().info("actual_value:" + str(actual_value) + ",expect_value:" + str(expect_value))
+        assert str(expect_value)  not in actual_value
