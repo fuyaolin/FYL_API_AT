@@ -18,4 +18,4 @@ class Test_{}(object):
 
 
 if __name__ == '__main__':
-    pytest.main(['-v', '$$'])
+    pytest.main(['-v','$$'])

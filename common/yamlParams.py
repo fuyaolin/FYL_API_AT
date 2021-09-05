@@ -24,6 +24,8 @@ class Params(object):
         self.body = None
         self.url = None
         self.method = None
+        self.file = None
+        self.image = None
         self.check = None
 
     # 处理yaml文件内容,返回执行顺序参数
@@ -101,10 +103,16 @@ class Params(object):
         # 请求body,可不存在
         if "body" in self.params['testcase'][index]['request'].keys():
             self.body = self.params['testcase'][index]['request']['body']
+        # 请求中存在图片,可不存在
+        if "image" in self.params['testcase'][index]['request'].keys():
+            self.image = self.params['testcase'][index]['request']['image']
+        # 请求中存在文件,可不存在
+        if "file" in self.params['testcase'][index]['request'].keys():
+            self.file = self.params['testcase'][index]['request']['file']
         # 预期结果,可不存在
         if 'check' in self.params['testcase'][index].keys():
             self.check = self.params['testcase'][index]['check']
         Logger().logs_file().debug("name:"+str(self.name)+",title:"+str(self.title))
 
         YamlRequest(index=index, url=self.url, method=self.method, headers=self.headers,
-                    body=self.body, check=self.check).yaml_request()
+                    body=self.body, image=self.image, file=self.file, check=self.check).yaml_request()

@@ -1,4 +1,3 @@
-import re
 import os
 import glob
 from common.read_path import TESTCASE_PY_PATH, TESTCASE_YAML_PATH, TESTCASE_PY_TEMPLATE_PATH
@@ -60,7 +59,7 @@ class ExeFile(object):
             if os.path.relpath(py_path):
                 print("文件创建成功")
         except Exception:
-            raise Exception ("文件创建失败:" + py_path)
+            raise Exception("文件创建失败:" + py_path)
         finally:
             f1.close()
             f2.close()
@@ -83,4 +82,3 @@ if __name__ == '__main__':
 #     raise Exception ("文件创建失败:" + py_path)
 # finally:
 #     f.close()
-

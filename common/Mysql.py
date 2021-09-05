@@ -5,7 +5,7 @@ import pymysql
 from common.read_config import ReadConfig
 
 
-class Mysql_Ope(object):
+class MysqlOpe(object):
     def __init__(self):
         self.conn = pymysql.connect(
             host=ReadConfig().get_ip,
@@ -17,13 +17,29 @@ class Mysql_Ope(object):
         )
         self.cursor = self.conn.cursor()
 
-    # 查询数据库
+    # 增/改/删
+    def mysql_ope_other(self, other_sql):
+        try:
+            self.cursor.execute(other_sql)
+            self.conn.commit()
+        except:
+            self.conn.rollback()
+        finally:
+            self.mysql_ope_close()
+
+    # 查
     def mysql_ope_select(self, select_sql):
         self.cursor.execute(select_sql)
-        self.cursor.fetchone()
+        result = self.cursor.fetchall()
         self.mysql_ope_close()
+        return result
 
     # 关闭数据库
     def mysql_ope_close(self):
         self.cursor.close()
         self.conn.close()
+
+
+if __name__ == '__main__':
+    sql = "select * from dept"
+    MysqlOpe().mysql_ope_select(sql)
