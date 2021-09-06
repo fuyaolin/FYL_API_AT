@@ -17,25 +17,63 @@ class YamlRequest(object):
         self.url = url
         self.headers = headers
         self.body = body
-        self.file = image
-        self.image = file
+        self.image_name = image
+        self.file_name = file
         self.check = check
         if (self.method or self.url) is None:
             Logger().logs_file().info("method is None or url is None")
             pytest.xfail(reason="method is None or url is None")
         Logger().logs_file().debug("method:"+str(method)+",url:"+str(url)+",body:"+str(body))
 
+    def files_type(self, file_name, file_type):
+        # 查找文件/图片路径
+        file_path = IMAGE_PATH + os.sep + file_name
+        if os.path.exists(file_path) is False:
+            pytest.xfail(str(file_path) + "路径找不到")
+        # 判断文件/图片类型
+        req_type = "text/plain"
+        types = self.file_name.split(".")[-1]
+        if file_type == "image":
+            if types in ['jpg']:
+                req_type = "image/jpeg"
+            elif types in ['png']:
+                req_type = "image/png"
+            else:
+                req_type = None
+        elif file_type == "file":
+            if types in ['html']:
+                req_type = "text/html"
+            elif types in ['zip']:
+                req_type = "application/zip"
+            elif types in ['json']:
+                req_type = "application/json"
+            elif types in ['xml']:
+                req_type = "text/xml"
+            else:
+                req_type = "text/plain"
+        else:
+            raise Exception("文件类型错误")
+        with open(file_path, 'rb') as f:
+            file = {"multipartFile": (file_path, f.read(), req_type)}
+        return file
+
     def yaml_request(self):
         if self.method == ('get' or 'GET'):
             self.yaml_get()
-        elif self.method == ('post' or 'POST') and (self.file or self.image) is None:
+        elif self.method == ('post' or 'POST') and (self.file_name or self.image_name) is None:
             self.yaml_post()
-        elif self.method == ('post' or 'POST') and (self.file or self.image) is not None:
+        elif self.method == ('post' or 'POST') and (self.file_name or self.image_name) is not None:
             self.yaml_files_post()
         elif self.method == ('put' or 'PUT'):
             self.yaml_put()
         elif self.method == ('delete' or 'DELETE'):
             self.yaml_delete()
+        elif self.method == ('patch' or 'PATCH'):
+            self.yaml_patch()
+        elif self.method == ('options' or 'OPTIONS'):
+            self.yaml_options()
+        elif self.method == ('head' or 'HEAD'):
+            self.yaml_head()
         else:
             pytest.xfail(reason="请输入正确的请求")
 
@@ -52,33 +90,18 @@ class YamlRequest(object):
         res = requests.post(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
         self.res(res)
 
-    # 未完成，待修改
     def yaml_files_post(self):
         # 只上传图片
-        if self.image is not None and self.file is None:
-            image_name = IMAGE_PATH + os.sep + self.image
-            if os.path.exists(image_name) is False:
-                pytest.xfail(str(image_name) + "路径找不到")
-            # 使用with打开图片后自动关闭，直接用open后面会报未关闭图片错误
-            with open(image_name, 'rb') as f:
-                # self.body['multipartFile'] = (file_name, f.read(), "image/jpeg")
-                file = {"multipartFile": (image_name, f.read(), "image/jpeg")}  # "image/jpeg"照片格式
+        files = None
+        if self.image_name is not None and self.file_name is None:
+            files = self.files_type(self.image_name, "image")
         # 只上传文件
-        elif self.file is not None and self.image is None:
-            file_name = IMAGE_PATH + os.sep + self.file
-            if os.path.exists(file_name) is False:
-                pytest.xfail(str(file_name) + "路径找不到")
-            if self.file.split(".")[-1] == "zip":
-                with open(file_name, 'rb')as f:
-                    # "application/zip"zip格式
-                    file = {"multipartFile": (file_name, f.read(), "application/zip")}
-            else:
-                with open(file_name, 'rb')as f:
-                    file = {"multipartFile": (file_name, f.read())}
+        elif self.file_name is not None and self.image_name is None:
+            files = self.files_type(self.image_name, "file")
         # 均上传
         else:
-            pass
-        res = requests.post(headers=self.headers, url=self.url, data=json.dumps(self.body), files=file, timeout=30)
+            pytest.skip("目前未实现")
+        res = requests.post(headers=self.headers, url=self.url, data=json.dumps(self.body), files=files, timeout=30)
         self.res(res)
 
     def yaml_put(self):
@@ -87,6 +110,18 @@ class YamlRequest(object):
 
     def yaml_delete(self):
         res = requests.delete(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
+        self.res(res)
+
+    def yaml_patch(self):
+        res = requests.patch(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
+        self.res(res)
+
+    def yaml_options(self):
+        res = requests.options(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
+        self.res(res)
+
+    def yaml_head(self):
+        res = requests.head(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
         self.res(res)
 
     def res(self, res):
