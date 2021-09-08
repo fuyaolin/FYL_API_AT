@@ -2,14 +2,14 @@
     发送邮件
 """
 
-from common.read_config import ReadConfig
+from common.Read_Config import ReadConfig
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 from email.header import Header
 # 报告路径
-from common.read_path import REPORT_HTML_PATH
+from common.Read_Path import REPORT_HTML_PATH
 
 # smtp服务器，端口
 smtp_server = ReadConfig().get_smtp_server

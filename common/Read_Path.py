@@ -31,7 +31,8 @@ LOGS_PATH = BASE_PATH + os.path.sep + "logs"
 EXCEL_PATH = BASE_PATH + os.path.sep + "excel"
 
 # 图片文件路径
-IMAGE_PATH = BASE_PATH + os.path.sep + "images"
+RES_IMAGE_PATH = BASE_PATH + os.path.sep + "up_or_down" + os.path.sep + "image"
+RES_FILE_PATH = BASE_PATH + os.path.sep + "up_or_down" + os.path.sep + "file"
 
 # testcase_py文件夹路径
 TESTCASE_PY_PATH = BASE_PATH + os.path.sep + "testcase_py"

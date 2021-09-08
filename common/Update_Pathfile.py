@@ -1,5 +1,5 @@
 from pathlib import Path
-from common.read_path import TESTCASE_YAML_PATH
+from common.Read_Path import TESTCASE_YAML_PATH
 import os
 
 

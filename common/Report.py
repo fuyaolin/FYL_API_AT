@@ -1,6 +1,6 @@
 # import pytest
 # import allure
-from common.read_path import REPORT_HTML_PATH, REPORT_RESULT_PATH
+from common.Read_Path import REPORT_HTML_PATH, REPORT_RESULT_PATH
 
 
 class Report(object):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
-from common.datamaneger import Runcase
-from common.read_path import TESTCASE_YAML_NAME_PATH
+from common.Data_Manager import Runcase
+from common.Read_Path import TESTCASE_YAML_NAME_PATH
 
 PATH = TESTCASE_YAML_NAME_PATH
 CASE = Runcase().case(PATH)

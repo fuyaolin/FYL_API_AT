@@ -1,5 +1,5 @@
 import jsonpath
-from common.log import Logger
+from common.Log import Logger
 
 
 class AssertResult(object):

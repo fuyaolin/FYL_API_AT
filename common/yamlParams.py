@@ -3,9 +3,9 @@
 """
 import pytest
 import time
-from common.log import Logger
-from common.read_config import ReadConfig
-from common.request import YamlRequest
+from common.Log import Logger
+from common.Read_Config import ReadConfig
+from common.Request import YamlRequest
 from public.prefixed import Prefixed
 
 

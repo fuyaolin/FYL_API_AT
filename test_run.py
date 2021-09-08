@@ -8,11 +8,15 @@
         每次执行完，自动发送邮件？
         定时执行？ --通过jenkins操作
         执行全部测试用例 -- 报告/邮件/参数 未加入 --需修改
+        并发执行测试用例
+        远程连接ftp，ssh操作linux
+        初始化环境
+        请求完善 ---超时或连接是失败处理
 """
 # 运行全部用例
 import os
 import pytest
-from common.read_path import TESTCASE_PY_PATH
+from common.Read_Path import TESTCASE_PY_PATH
 # from common.report import Report
 # from common.read_path import REPORT_RESULT_PATH
 #
