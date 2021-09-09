@@ -17,7 +17,7 @@ TESTCASE_YAML_TEMPLATE_PATH = BASE_PATH + os.sep + "common" + os.sep + "template
 # config下config.ini文件路
 CONFIG_INI_PATH = BASE_PATH + os.sep + "config" + os.sep + "config.ini"
 # config下email文件路径
-EMAIL_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "sendemail.py"
+EMAIL_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "Send_Email.py"
 
 # 前置文件路径
 SETUP_PATH = BASE_PATH + os.path.sep + "public" + os.path.sep + "setup"

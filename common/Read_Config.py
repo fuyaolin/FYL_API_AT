@@ -93,3 +93,23 @@ class ReadConfig(object):
     def get_smtp_port(self):
         get_smtp_port = self.config.get("email", "smtp_port")
         return get_smtp_port
+
+    @property
+    def get_ftp_host(self):
+        get_ftp_host = self.config.get("FTP", "host")
+        return get_ftp_host
+
+    @property
+    def get_ftp_port(self):
+        get_ftp_port = self.config.get("FTP", "port")
+        return get_ftp_port
+
+    @property
+    def get_ssh_host(self):
+        get_ssh_host = self.config.get("SSH", "host")
+        return get_ssh_host
+
+    @property
+    def get_ssh_port(self):
+        get_ssh_port = self.config.get("SSH", "port")
+        return get_ssh_port

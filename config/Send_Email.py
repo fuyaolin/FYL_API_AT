@@ -1,10 +1,10 @@
 """
     发送邮件
 """
-
-from common.Read_Config import ReadConfig
+# -*- coding: utf-8 -*-
 import smtplib
 from email.mime.text import MIMEText
+from common.Read_Config import ReadConfig
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 from email.header import Header
