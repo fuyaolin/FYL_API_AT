@@ -150,57 +150,6 @@ class MyFTP:
             self.debug_print('返回上层目录 %s' % self.ftp.pwd())
         return True
 
-    def upload_file(self, local_file, remote_file):
-        """从本地上传文件到ftp
-
-           参数:
-             local_path: 本地文件
-
-             remote_path: 远程文件
-        """
-        if not os.path.isfile(local_file):
-            self.debug_print('%s 不存在' % local_file)
-            return
-
-        if self.is_same_size(local_file, remote_file):
-            self.debug_print('跳过相等的文件: %s' % local_file)
-            return
-
-        buf_size = 1024
-        file_handler = open(local_file, 'rb')
-        self.ftp.storbinary('STOR %s' % remote_file, file_handler, buf_size)
-        file_handler.close()
-        self.debug_print('上传: %s' % local_file + "成功!")
-
-    def upload_file_tree(self, local_path, remote_path):
-        """从本地上传目录下多个文件到ftp
-           参数:
-
-             local_path: 本地路径
-
-             remote_path: 远程路径
-        """
-        if not os.path.isdir(local_path):
-            self.debug_print('本地目录 %s 不存在' % local_path)
-            return
-
-        self.ftp.cwd(remote_path)
-        self.debug_print('切换至远程目录: %s' % self.ftp.pwd())
-
-        local_name_list = os.listdir(local_path)
-        for local_name in local_name_list:
-            src = os.path.join(local_path, local_name)
-            if os.path.isdir(src):
-                try:
-                    self.ftp.mkd(local_name)
-                except Exception as err:
-                    self.debug_print("目录已存在 %s ,具体错误描述为：%s" % (local_name, err))
-                self.debug_print("upload_file_tree()---> 上传目录： %s" % local_name)
-                self.upload_file_tree(src, local_name)
-            else:
-                self.debug_print("upload_file_tree()---> 上传文件： %s" % local_name)
-                self.upload_file(src, local_name)
-        self.ftp.cwd("..")
 
     def close(self):
         """ 退出ftp
