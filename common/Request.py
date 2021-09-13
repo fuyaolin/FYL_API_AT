@@ -5,7 +5,7 @@ import requests
 import pytest
 import json
 from common.Log import Logger
-from assertfun.assertfunction import AssertResult
+from assertfun.Assert_Func import AssertResult
 from common.Request_File import RequestFile
 
 

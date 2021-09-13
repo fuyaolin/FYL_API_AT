@@ -100,4 +100,4 @@ class AssertResult(object):
     @staticmethod
     def _notin(expect_value, actual_value):
         Logger().logs_file().info("actual_value:" + str(actual_value) + ",expect_value:" + str(expect_value))
-        assert str(expect_value)  not in actual_value
+        assert str(expect_value) not in actual_value
