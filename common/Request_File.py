@@ -18,7 +18,6 @@ class RequestFile(object):
                 pytest.xfail(str(file_path) + "路径找不到")
             else:
                 # 判断文件类型
-                req_type = "text/plain"
                 types = file_name.split(".")[-1]
                 if types in ['html']:
                     req_type = "text/html"
@@ -42,15 +41,13 @@ class RequestFile(object):
             if os.path.exists(image_path) is False:
                 pytest.xfail(str(image_path) + "路径找不到")
             else:
-                req_type = None
                 types = image_path.split(".")[-1]
                 if types in ['jpg']:
                     req_type = "image/jpeg"
                 elif types in ['png']:
                     req_type = "image/png"
                 else:
-                    pytest.xfail(str(types) + "not in jpg/png")
-
+                    req_type = None
                 with open(image_path, 'rb') as f:
                     file = {"multipartFile": (image_path, f.read(), req_type)}
                 return file

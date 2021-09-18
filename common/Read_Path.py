@@ -36,11 +36,14 @@ RES_FILE_PATH = BASE_PATH + os.path.sep + "up_or_down" + os.path.sep + "file"
 
 # testcase_py文件夹路径
 TESTCASE_PY_PATH = BASE_PATH + os.path.sep + "testcase_py"
+TESTCASE_PY_NAME_PATH = os.path.realpath(sys.argv[0])
 
 # testcase_yaml模块
 # testcase_yaml文件夹路径
 TESTCASE_YAML_PATH = BASE_PATH + os.path.sep + "testcase_yaml"
-TESTCASE_YAML_NAME_PATH = TESTCASE_YAML_PATH + os.sep + os.path.basename(sys.argv[0]).split(".")[0] + ".yaml"
+TESTCASE_YAML_NAME_PATH = os.path.realpath(sys.argv[0]).replace("testcase_py", "testcase_yaml").replace(".py", ".yaml")
 # allure报告路径
 REPORT_HTML_PATH = BASE_PATH + os.path.sep + "report_allure" + os.path.sep + "html"
 REPORT_RESULT_PATH = BASE_PATH + os.path.sep + "report_allure" + os.path.sep + "result"
+# html报告路径
+HTML_REPORT_PATH = BASE_PATH + os.path.sep + "report_html"

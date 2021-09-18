@@ -47,14 +47,10 @@ class ExeFile(object):
         try:
             old_str = '{}'
             new_str = py_path.split('\\')[-2]
-            old_str1 = '$$'
-            new_str1 = py_path.split('\\')[-1]
             with open(self.TESTCASE_PY_TEMPLATE_PATH, "r") as f1, open(py_path, "w", encoding='utf-8') as f2:
                 for line in f1:
                     if old_str in line:
                         line = line.replace(old_str, new_str)
-                    elif old_str1 in line:
-                        line = line.replace(old_str1, new_str1)
                     f2.write(line)
             if os.path.relpath(py_path):
                 print("文件创建成功")
