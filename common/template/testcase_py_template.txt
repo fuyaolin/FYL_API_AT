@@ -8,11 +8,10 @@ CASE = Runcase().case(PATH)
 skip_reason = PATH + "(testcase skip)"
 
 
-# @allure.story('')
 class Test_{}(object):
     @pytest.mark.skipif(len(CASE) == 0, reason=skip_reason)
     @pytest.mark.package
-    # @allure.story('')
+    @pytest.mark.all
     @pytest.mark.parametrize('case', CASE)
     def test_{}(self, case):
         Runcase().all_run(path=PATH, case=case)

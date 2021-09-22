@@ -1,12 +1,12 @@
 # import pytest
 # import allure
-from common.Read_Path import REPORT_HTML_PATH, REPORT_RESULT_PATH
+from common.Read_Path import REPORT_REPORT_PATH, REPORT_RESULT_PATH
 
 
 class Report(object):
     def __init__(self):
         self.result_path = REPORT_RESULT_PATH
-        self.html_path = REPORT_HTML_PATH
+        self.html_path = REPORT_REPORT_PATH
 
     def get_report_url(self):
         # allure generate. / result / 5 - o. / report / 5 / --clean(指定生成报告的路径)

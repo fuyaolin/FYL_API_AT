@@ -13,7 +13,8 @@
 # 运行全部用例
 import os
 import pytest
-from common.Read_Path import TESTCASE_PY_PATH, REPORT_RESULT_PATH, HTML_REPORT_PATH
+from common.Read_Path import TESTCASE_PY_PATH, REPORT_RESULT_PATH,  REPORT_REPORT_PATH, HTML_REPORT_PATH
+
 
 def run_all():
     # server中：API为单接口，smoke为冒烟
@@ -28,13 +29,19 @@ def run_all():
                                                         else TESTCASE_PY_PATH + os.sep + server + os.sep + model)
     # 执行文件类型
     types = types if types != '' else 'all'
-    # 生成报告格式
+    # html生成报告格式
     html = HTML_REPORT_PATH if html_report is True else ''
+    # allure
     allure = REPORT_RESULT_PATH if allure_report is True else ''
 
-    pytest.main('-v -s -m={type} --html={html} --alluredir={dir} --clean'
-                .format(type=type, html=html, dir=allure), model_path)
+    pytest.main('-v -s -m={type} --html={html} --alluredir={dir} --clean-alluredir'
+                .format(type=types, html=html, dir=allure), model_path)
+
+    if allure_report is True:
+        os.system('allure generate {dir} --clean allure-results -o {report}'
+                  .format(dir=allure, report=REPORT_REPORT_PATH))
+        os.system('allure open -h 0.0.0.0 -p 8083 {report}'.format(report=REPORT_REPORT_PATH))
+
 
 if __name__ == '__main__':
     run_all()
-
