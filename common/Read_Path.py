@@ -45,5 +45,3 @@ TESTCASE_YAML_NAME_PATH = os.path.realpath(sys.argv[0]).replace("testcase_py", "
 # allure报告路径
 REPORT_REPORT_PATH = BASE_PATH + os.path.sep + "report_allure" + os.path.sep + "html"
 REPORT_RESULT_PATH = BASE_PATH + os.path.sep + "report_allure" + os.path.sep + "result"
-# html报告路径
-HTML_REPORT_PATH = BASE_PATH + os.path.sep + "report_html"

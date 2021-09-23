@@ -13,7 +13,7 @@
 # 运行全部用例
 import os
 import pytest
-from common.Read_Path import TESTCASE_PY_PATH, REPORT_RESULT_PATH,  REPORT_REPORT_PATH, HTML_REPORT_PATH
+from common.Read_Path import TESTCASE_PY_PATH, REPORT_RESULT_PATH,  REPORT_REPORT_PATH
 
 
 def run_all():
@@ -22,25 +22,21 @@ def run_all():
     model = ''
     types = 'package'
 
-    html_report = True
     allure_report = True
     # 执行py文件路径
     model_path = TESTCASE_PY_PATH if server == '' else (TESTCASE_PY_PATH + os.sep + server if model == ''
                                                         else TESTCASE_PY_PATH + os.sep + server + os.sep + model)
     # 执行文件类型
     types = types if types != '' else 'all'
-    # html生成报告格式
-    html = HTML_REPORT_PATH if html_report is True else ''
+
     # allure
     allure = REPORT_RESULT_PATH if allure_report is True else ''
 
-    pytest.main('-v -s -m={type} --html={html} --alluredir={dir} --clean-alluredir'
-                .format(type=types, html=html, dir=allure), model_path)
+    pytest.main(['-v', '-s' '-m={type} --alluredir={dir}'.format(type=types, dir=allure), model_path])
 
     if allure_report is True:
-        os.system('allure generate {dir} --clean allure-results -o {report}'
-                  .format(dir=allure, report=REPORT_REPORT_PATH))
-        os.system('allure open -h 0.0.0.0 -p 8083 {report}'.format(report=REPORT_REPORT_PATH))
+        os.system('allure generate {dir} -o {report} --clean'.format(dir=allure, report=REPORT_REPORT_PATH))
+        os.system('allure open -h 127.0.0.1 -p 8083 {report}'.format(report=REPORT_REPORT_PATH))
 
 
 if __name__ == '__main__':
