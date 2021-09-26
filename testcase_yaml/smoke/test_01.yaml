@@ -1,41 +1,24 @@
-order_by: [Case1]
+order_by: [Case1,Case2]
 all_skip: false
-setup: setup_file.setup_function
-teardown: teardown.tear_fun
 testcase:
   Case1:
     skip: false
     name: 告警事件审查
     title: 批量获取
-    setup: setup_file.setup_function
-    teardown: teardown.tear_fun
     request:
       url: /api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup
       method: get
     check:
       - eq:
-          - count,10
+          - status, 200
 
   Case2:
-    skip: true
+    skip: false
     name: 告警事件审查
     title: 批量获取
-    setup: set2.setup
     request:
-      url: /api/v1/kai/entities/entity
-      method: post
-      image:
-      file:
-      body:
-        entityName: 创建实体2021_0823
-        entityDescription: ''
-        entityGroup: 未分组
-        fieldsCondition:
-          - key: host
-            value: '3'
-        tagsID: []
-        tags: []
+      url: /api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup
+      method: get
     check:
       - eq:
-          - entityId,*
-          - status,200
+          - status, 200

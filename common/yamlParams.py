@@ -17,10 +17,7 @@ class Params(object):
         self.order_by = []
         self.name = None
         self.title = None
-        if 'headers' in self.params.keys():
-            self.headers = self.params['headers']
-        else:
-            self.headers = None
+        self.headers = self.params['headers'] if "headers" in self.params.keys() else None
         self.body = None
         self.url = None
         self.method = None

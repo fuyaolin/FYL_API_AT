@@ -1,21 +1,19 @@
-import os
+# -*- coding: utf-8 -*-
 import pytest
-import allure
+import os
 from common.Data_Manager import Runcase
 from common.Read_Path import TESTCASE_PY_NAME_PATH
 
-PATH = os.path.basename(__file__).replace("_py", "_yaml").replace(".py", ".yaml")
+PATH = os.path.realpath(__file__).replace("_py", "_yaml").replace(".py", ".yaml")
 CASE = Runcase().case(PATH)
 skip_reason = PATH + "(testcase skip)"
 
 
-@allure.feature('Test_{}')
 class Test_{}(object):
     @pytest.mark.skipif(len(CASE) == 0, reason=skip_reason)
-    @pytest.mark.parametrize('case', CASE)
     @pytest.mark.package
     @pytest.mark.all
-    @allure.story(CASE)
+    @pytest.mark.parametrize('case', CASE)
     def test_{}(self, case):
         Runcase().all_run(path=PATH, case=case)
 

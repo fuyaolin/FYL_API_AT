@@ -8,8 +8,7 @@ from common.Read_Config import ReadConfig
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 from email.header import Header
-# 报告路径
-from common.Read_Path import REPORT_HTML_PATH
+
 
 # smtp服务器，端口
 smtp_server = ReadConfig().get_smtp_server
@@ -38,13 +37,13 @@ message['CC'] = CC
 # 主题
 message['Subject'] = Header(mail_title, "utf-8")
 # 构建纯文本的邮件内容
-message.attach(MIMEText(mail_content, 'html', 'utf-8'))
+message.attach(MIMEText(mail_content, 'report', 'utf-8'))
 
 # # 发送附件
 # attachment = MIMEApplication(open(REPORT_PATH, 'rb').read())
 # attachment["Content-Type"] = 'application/octet-stream'
 # # 给附件重命名
-# basename = "at_report.html"
+# basename = "at_report.report"
 # # 注意：此处basename要转换为gbk编码，否则中文会有乱码。
 # attachment.add_header('Content-Dispositon', 'attachment', filename=('utf-8', '', basename))
 # message.attach(attachment)
@@ -70,5 +69,3 @@ except smtplib.SMTPException:
 finally:
     # 关闭服务器
     server.quit()
-
-

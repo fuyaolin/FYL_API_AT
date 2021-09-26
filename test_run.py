@@ -13,30 +13,28 @@
 # 运行全部用例
 import os
 import pytest
-from common.Read_Path import TESTCASE_PY_PATH, REPORT_RESULT_PATH,  REPORT_REPORT_PATH
+from common.Report import Report
+from common.Read_Path import TESTCASE_PY_PATH
 
 
 def run_all():
     # server中：API为单接口，smoke为冒烟
-    server = ''
+    server = 'smoke'
     model = ''
-    types = 'package'
+    types = 'all'
 
-    allure_report = True
+    rp = Report()
+    rp.del_report()
+
     # 执行py文件路径
     model_path = TESTCASE_PY_PATH if server == '' else (TESTCASE_PY_PATH + os.sep + server if model == ''
                                                         else TESTCASE_PY_PATH + os.sep + server + os.sep + model)
-    # 执行文件类型
     types = types if types != '' else 'all'
 
-    # allure
-    allure = REPORT_RESULT_PATH if allure_report is True else ''
+    pytest.main(['-vs', '-m={type}'.format(type=types), model_path,
+                 '--alluredir={dir}'.format(dir=rp.get_result_path())])
 
-    pytest.main(['-v', '-s' '-m={type} --alluredir={dir}'.format(type=types, dir=allure), model_path])
-
-    if allure_report is True:
-        os.system('allure generate {dir} -o {report} --clean'.format(dir=allure, report=REPORT_REPORT_PATH))
-        os.system('allure open -h 127.0.0.1 -p 8083 {report}'.format(report=REPORT_REPORT_PATH))
+    rp.restart()
 
 
 if __name__ == '__main__':

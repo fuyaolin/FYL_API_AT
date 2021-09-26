@@ -1,3 +1,4 @@
+import allure
 from common.yamlParams import Params
 from common.YamlUtil import ReadYaml
 
@@ -23,6 +24,7 @@ class Runcase(DataManager):
 
     # 执行单个测试用例
     def run(self, value, case):
+        allure.dynamic.story(case)
         # 前置
         Params(value).yaml_index_setup(case)
         # 执行

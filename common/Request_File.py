@@ -19,8 +19,8 @@ class RequestFile(object):
             else:
                 # 判断文件类型
                 types = file_name.split(".")[-1]
-                if types in ['html']:
-                    req_type = "text/html"
+                if types in ['report']:
+                    req_type = "text/report"
                 elif types in ['zip']:
                     req_type = "application/zip"
                 elif types in ['json']:
@@ -53,9 +53,3 @@ class RequestFile(object):
                 return file
         else:
             return None
-
-
-
-
-
-
