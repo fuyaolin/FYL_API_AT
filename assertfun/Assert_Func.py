@@ -1,4 +1,5 @@
 import jsonpath
+import allure
 from common.Log import Logger
 
 
@@ -59,45 +60,50 @@ class AssertResult(object):
                     # 进行比较
                     self.rule.get(key)(actual_value=actually_value, expect_value=expected_value)
                 else:
-                    Logger().logs_file().info(str(expected_key)+"此参数未在返回值中,actual_value:"+str(self.actual_value))
+                    allure.attach("{expected_key}此参数未在返回值中,实际结果{actual_value}"
+                                  .format(expected_key=expected_key, actual_value=self.actual_value), "check")
+                    Logger().logs_file().info("{expected_key}此参数未在返回值中,实际结果{actual_value}"
+                                              .format(expected_key=expected_key, actual_value=self.actual_value))
                     assert False
 
     @staticmethod
     def _eq(expect_value, actual_value):
-        Logger().logs_file().info("actual_value:" + str(actual_value) + ",expect_value:" + str(expect_value))
+        Logger().logs_file().info("actual_value:{actual_value};expect_value:{expect_value}"
+                                  .format(actual_value=actual_value, expect_value=expect_value))
+        allure.attach("预期结果：{expect_value}；实际结果：{actual_value}"
+                      .format(expect_value=expect_value, actual_value=actual_value), "check")
         assert actual_value == expect_value
 
-    @staticmethod
-    def _ne(expect_value, actual_value):
-        Logger().logs_file().info("actual_value:" + str(actual_value) + ",expect_value:" + str(expect_value))
+    def _ne(self, expect_value, actual_value):
+        self.allure_value(expect_value, actual_value)
         assert actual_value != expect_value
 
-    @staticmethod
-    def _gt(expect_value, actual_value):
-        Logger().logs_file().info("actual_value:" + str(actual_value) + ",expect_value:" + str(expect_value))
+    def _gt(self, expect_value, actual_value):
+        self.allure_value(expect_value, actual_value)
         assert expect_value > actual_value
 
-    @staticmethod
-    def _ge(expect_value, actual_value):
-        Logger().logs_file().info("actual_value:" + str(actual_value) + ",expect_value:" + str(expect_value))
+    def _ge(self, expect_value, actual_value):
+        self.allure_value(expect_value, actual_value)
         assert expect_value >= actual_value
 
-    @staticmethod
-    def _lt(expect_value, actual_value):
-        Logger().logs_file().info("actual_value:" + str(actual_value) + ",expect_value:" + str(expect_value))
+    def _lt(self, expect_value, actual_value):
+        self.allure_value(expect_value, actual_value)
         assert expect_value < actual_value
 
-    @staticmethod
-    def _le(expect_value, actual_value):
-        Logger().logs_file().info("actual_value:" + str(actual_value) + ",expect_value:" + str(expect_value))
+    def _le(self, expect_value, actual_value):
+        self.allure_value(expect_value, actual_value)
         assert expect_value <= actual_value
 
-    @staticmethod
-    def _in(expect_value, actual_value):
-        Logger().logs_file().info("actual_value:" + str(actual_value) + ",expect_value:" + str(expect_value))
+    def _in(self, expect_value, actual_value):
+        self.allure_value(expect_value, actual_value)
         assert str(expect_value) in actual_value
 
-    @staticmethod
-    def _notin(expect_value, actual_value):
-        Logger().logs_file().info("actual_value:" + str(actual_value) + ",expect_value:" + str(expect_value))
+    def _notin(self, expect_value, actual_value):
+        self.allure_value(expect_value, actual_value)
         assert str(expect_value) not in actual_value
+
+    def allure_value(self, expect_value, actual_value):
+        Logger().logs_file().info("actual_value:{actual_value};expect_value:{expect_value}"
+                                  .format(actual_value=actual_value, expect_value=expect_value))
+        allure.attach("预期结果：{expect_value}；实际结果：{actual_value}"
+                      .format(expect_value=expect_value, actual_value=actual_value), "check")

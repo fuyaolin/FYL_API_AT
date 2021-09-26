@@ -13,6 +13,7 @@
 # 运行全部用例
 import os
 import pytest
+import allure
 from common.Report import Report
 from common.Read_Path import TESTCASE_PY_PATH
 
@@ -29,7 +30,9 @@ def run_all():
     # 执行py文件路径
     model_path = TESTCASE_PY_PATH if server == '' else (TESTCASE_PY_PATH + os.sep + server if model == ''
                                                         else TESTCASE_PY_PATH + os.sep + server + os.sep + model)
+
     types = types if types != '' else 'all'
+    allure.tag(types)
 
     pytest.main(['-vs', '-m={type}'.format(type=types), model_path,
                  '--alluredir={dir}'.format(dir=rp.get_result_path())])

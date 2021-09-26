@@ -4,6 +4,7 @@
 import requests
 import pytest
 import json
+import allure
 from common.Log import Logger
 from assertfun.Assert_Func import AssertResult
 from common.Request_File import RequestFile
@@ -123,9 +124,12 @@ class YamlRequest(object):
     def res(self, res):
         value = res.text
         code = res.status_code
-        Logger().logs_file().debug("实际返回结果为：status："+str(code)+",value:"+str(value))
+        Logger().logs_file().debug("status：{status};response:{value}".format(status=code, value=value))
         if self.check is None:
             # 没有检查点，永远成立
+            actual_value = "status：{status};response:{value}".format(status=code, value=value)
+            allure.attach("预期结果：{expect_value}；实际结果：{actual_value}"
+                          .format(expect_value="未设置", actual_value=actual_value), "check")
             Logger().logs_file().debug("没有检查点，永远成立")
             assert True
         else:

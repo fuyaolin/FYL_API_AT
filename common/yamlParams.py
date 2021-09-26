@@ -1,8 +1,9 @@
 """
     解读yaml参数
 """
-import pytest
 import time
+import pytest
+import allure
 from common.Log import Logger
 from common.Read_Config import ReadConfig
 from common.Request import YamlRequest
@@ -40,7 +41,7 @@ class Params(object):
         # 整个测试用例不跳过，单个用例有执行顺序，按照执行顺序执行
         else:
             self.runcase = self.order_by
-        Logger().logs_file().debug("执行用例顺序为：" + str(self.runcase))
+        Logger().logs_file().debug("执行用例顺序为：{runcase}".format(runcase=self.runcase))
         return self.runcase
 
     def yaml_setup(self):
@@ -71,18 +72,29 @@ class Params(object):
             if skip == 1:
                 pytest.skip("测试用例开关未开启")
                 Logger().logs_file().debug(str(index) + "测试用例开关未开启")
+
         # 休眠参数，可不存在
         if 'sleep' in self.params['testcase'][index].keys():
             sleep_time = self.params['testcase'][index]['sleep']
             time.sleep(sleep_time)
+
         # 此参数必须存在
         if self.params['testcase'][index]['name']:
             self.name = self.params['testcase'][index]['name']
+            allure.step('name')
+            allure.attach('name: {name}'.format(name=self.name), 'name')
+
         if self.params['testcase'][index]['title']:
             self.title = self.params['testcase'][index]['title']
+            allure.step('title')
+            allure.attach('title: {title}'.format(title=self.title), 'title')
+
         # 请求头参数，可不存在
         if "header" in self.params['testcase'][index]['request'].keys():
             self.headers = self.params['testcase'][index]['request']['header']
+            allure.step('headers')
+            allure.attach('headers: {headers}'.format(headers=self.headers), 'headers')
+
         # 请求url，必须存在
         if self.params['testcase'][index]['request']['url']:
             url = self.params['testcase'][index]['request']['url']
@@ -90,26 +102,40 @@ class Params(object):
                 self.url = ReadConfig().get_url + url
             else:
                 self.url = url
+            allure.step('url')
+            allure.attach('url: {url}'.format(url=self.url), 'url')
         else:
-            pytest.xfail(reason="name:"+str(self.name)+",title:"+str(self.title)+"请加入请求地址url参数")
+            pytest.xfail(reason="name:{name}; title:{title};请加入请求地址url参数"
+                         .format(name=self.name, title=self.title))
+
         # 请求方法，不可为空
         if self.params['testcase'][index]['request']['method']:
             self.method = self.params['testcase'][index]['request']['method']
+            allure.step('method')
+            allure.attach('method: {method}'.format(method=self.method), 'method')
         else:
-            pytest.xfail(reason="name:"+str(self.name)+",title:"+str(self.title)+"请加入请求方法method参数")
+            pytest.xfail(reason="name:{name}; title:{title};请加入请求方法method参数"
+                         .format(name=self.name, title=self.title))
+
         # 请求body,可不存在
         if "body" in self.params['testcase'][index]['request'].keys():
             self.body = self.params['testcase'][index]['request']['body']
+            allure.step('body')
+            allure.attach('body: {body}'.format(body=self.body), "body")
+
         # 请求中存在图片,可不存在
         if "image" in self.params['testcase'][index]['request'].keys():
             self.image = self.params['testcase'][index]['request']['image']
+
         # 请求中存在文件,可不存在
         if "file" in self.params['testcase'][index]['request'].keys():
             self.file = self.params['testcase'][index]['request']['file']
+
         # 预期结果,可不存在
         if 'check' in self.params['testcase'][index].keys():
             self.check = self.params['testcase'][index]['check']
         Logger().logs_file().debug("name:"+str(self.name)+",title:"+str(self.title))
+        Logger().logs_file().debug("name:{name}; title:{title}".format(name=self.name, title=self.title))
 
         YamlRequest(index=index, url=self.url, method=self.method, headers=self.headers,
                     body=self.body, image=self.image, file=self.file, check=self.check).yaml_request()
