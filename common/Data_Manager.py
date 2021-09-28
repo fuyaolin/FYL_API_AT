@@ -1,10 +1,9 @@
-import allure
 from common.yamlParams import Params
 from common.YamlUtil import ReadYaml
+from common.Memory_Case import MemoryCase
 
 
 class DataManager(object):
-
     @staticmethod
     def yamlvalue(path):
         yaml_value = ReadYaml(path).read_yaml()
@@ -23,7 +22,8 @@ class Runcase(DataManager):
         return run_case
 
     # 执行单个测试用例
-    def run(self, value, case):
+    @staticmethod
+    def run(value, case):
         # 前置
         Params(value).yaml_index_setup(case)
         # 执行
@@ -33,6 +33,7 @@ class Runcase(DataManager):
 
     def all_run(self, path, case):
         value = Runcase.yamlvalue(path)
+        MemoryCase().add_memory_case_path(path)
         # 前置
         Params(value).yaml_setup()
         # 执行测试用例

@@ -8,6 +8,7 @@ import allure
 from common.Log import Logger
 from assertfun.Assert_Func import AssertResult
 from common.Request_File import RequestFile
+from common.Memory_Case import MemoryCase
 
 
 class YamlRequest(object):
@@ -23,7 +24,7 @@ class YamlRequest(object):
         if (self.method or self.url) is None:
             Logger().logs_file().info("method is None or url is None")
             pytest.xfail(reason="method is None or url is None")
-        Logger().logs_file().debug("method:"+str(method)+",url:"+str(url)+",body:"+str(body))
+        Logger().logs_file().debug("method:{method},url:{url},body:{body}".format(method=method, url=url, body=body))
 
     def yaml_request(self):
         if self.method == ('get' or 'GET'):
@@ -124,12 +125,14 @@ class YamlRequest(object):
     def res(self, res):
         value = res.text
         code = res.status_code
+        MemoryCase().add_memory_case(memory_case_key=self.index, response=value)
         Logger().logs_file().debug("status：{status};response:{value}".format(status=code, value=value))
         if self.check is None:
             # 没有检查点，永远成立
             actual_value = "status：{status};response:{value}".format(status=code, value=value)
-            allure.attach("预期结果：{expect_value}；实际结果：{actual_value}"
-                          .format(expect_value="未设置", actual_value=actual_value), "check")
+            with allure.step("check"):
+                allure.attach("预期结果：{expect_value}；实际结果：{actual_value}"
+                              .format(expect_value="未设置", actual_value=actual_value), "check")
             Logger().logs_file().debug("没有检查点，永远成立")
             assert True
         else:

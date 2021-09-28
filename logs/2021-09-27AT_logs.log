@@ -1,0 +1,70 @@
+2021-09-27 11:16:23,821 - root - DEBUG - 执行用例顺序为：['Case1', 'Case2']
+2021-09-27 11:16:24,320 - root - DEBUG - 执行用例顺序为：['Case1', 'Case2']
+2021-09-27 11:16:24,329 - root - DEBUG - name:告警事件审查; title:批量获取
+2021-09-27 11:16:24,330 - root - DEBUG - method:get,url:http://localhost:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
+2021-09-27 11:16:24,354 - root - DEBUG - status：404;response:<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+
+2021-09-27 11:16:24,356 - root - INFO - actual_value:404;expect_value:200
+2021-09-27 11:16:24,410 - root - DEBUG - name:告警事件审查; title:批量获取
+2021-09-27 11:16:24,411 - root - DEBUG - method:get,url:http://localhost:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
+2021-09-27 11:16:24,425 - root - DEBUG - status：404;response:<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+
+2021-09-27 11:16:24,425 - root - INFO - actual_value:404;expect_value:200
+2021-09-27 11:17:49,035 - root - DEBUG - 执行用例顺序为：['Case1', 'Case2']
+2021-09-27 11:17:49,158 - root - DEBUG - 执行用例顺序为：['Case1', 'Case2']
+2021-09-27 11:17:49,166 - root - DEBUG - name:告警事件审查; title:批量获取
+2021-09-27 11:17:49,166 - root - DEBUG - method:get,url:http://localhost:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
+2021-09-27 11:17:49,171 - root - DEBUG - status：404;response:<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+
+2021-09-27 11:17:49,172 - root - INFO - actual_value:404;expect_value:200
+2021-09-27 11:17:49,232 - root - DEBUG - name:告警事件审查; title:批量获取
+2021-09-27 11:17:49,232 - root - DEBUG - method:get,url:http://localhost:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
+2021-09-27 11:17:49,247 - root - DEBUG - status：404;response:<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+
+2021-09-27 11:17:49,248 - root - INFO - actual_value:404;expect_value:200
+2021-09-27 11:18:34,620 - root - DEBUG - 执行用例顺序为：['Case1', 'Case2']
+2021-09-27 11:18:34,736 - root - DEBUG - 执行用例顺序为：['Case1', 'Case2']
+2021-09-27 11:18:34,744 - root - DEBUG - name:告警事件审查; title:批量获取
+2021-09-27 11:18:34,744 - root - DEBUG - method:get,url:http://localhost:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
+2021-09-27 11:18:34,749 - root - DEBUG - status：404;response:<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+
+2021-09-27 11:18:34,804 - root - DEBUG - name:告警事件审查; title:批量获取
+2021-09-27 11:18:34,804 - root - DEBUG - method:get,url:http://localhost:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
+2021-09-27 11:18:34,819 - root - DEBUG - status：404;response:<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+

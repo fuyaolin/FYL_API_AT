@@ -28,7 +28,7 @@ class AssertResult(object):
                     # value包括（预期字段,预期值）
                     self.handle_values(key, value)
                 else:
-                    Logger().logs_file().info("预期运算符("+key+")not in 'eq,ne,gt,ge,lt,le,in'")
+                    Logger().logs_file().info("预期运算符 {key} not in 'eq,ne,gt,ge,lt,le,in'".format(key=key))
                     assert key in "eq,ne,gt,ge,lt,le,in"
 
     def handle_values(self, key, value):
@@ -49,7 +49,8 @@ class AssertResult(object):
                     # 统一类型
                     if expected_value == "*":
                         # 预期值为*，代表对比返回参数的key
-                        Logger().logs_file().debug(expected_key+"此参数在返回值，查询成功")
+                        Logger().logs_file().debug("{expected_key} 此参数在返回值，查询成功"
+                                                   .format(expected_key=expected_key))
                         assert True
                         continue
                     elif type(actually_value) is int:
@@ -68,42 +69,48 @@ class AssertResult(object):
 
     @staticmethod
     def _eq(expect_value, actual_value):
-        Logger().logs_file().info("actual_value:{actual_value};expect_value:{expect_value}"
-                                  .format(actual_value=actual_value, expect_value=expect_value))
-        allure.attach("预期结果：{expect_value}；实际结果：{actual_value}"
-                      .format(expect_value=expect_value, actual_value=actual_value), "check")
+        allure_value(expect_value, actual_value)
         assert actual_value == expect_value
 
-    def _ne(self, expect_value, actual_value):
-        self.allure_value(expect_value, actual_value)
+    @staticmethod
+    def _ne(expect_value, actual_value):
+        allure_value(expect_value, actual_value)
         assert actual_value != expect_value
 
-    def _gt(self, expect_value, actual_value):
-        self.allure_value(expect_value, actual_value)
+    @staticmethod
+    def _gt(expect_value, actual_value):
+        allure_value(expect_value, actual_value)
         assert expect_value > actual_value
 
-    def _ge(self, expect_value, actual_value):
-        self.allure_value(expect_value, actual_value)
+    @staticmethod
+    def _ge(expect_value, actual_value):
+        allure_value(expect_value, actual_value)
         assert expect_value >= actual_value
 
-    def _lt(self, expect_value, actual_value):
-        self.allure_value(expect_value, actual_value)
+    @staticmethod
+    def _lt(expect_value, actual_value):
+        allure_value(expect_value, actual_value)
         assert expect_value < actual_value
 
-    def _le(self, expect_value, actual_value):
-        self.allure_value(expect_value, actual_value)
+    @staticmethod
+    def _le(expect_value, actual_value):
+        allure_value(expect_value, actual_value)
         assert expect_value <= actual_value
 
-    def _in(self, expect_value, actual_value):
-        self.allure_value(expect_value, actual_value)
+    @staticmethod
+    def _in(expect_value, actual_value):
+        allure_value(expect_value, actual_value)
         assert str(expect_value) in actual_value
 
-    def _notin(self, expect_value, actual_value):
-        self.allure_value(expect_value, actual_value)
+    @staticmethod
+    def _notin(expect_value, actual_value):
+        allure_value(expect_value, actual_value)
         assert str(expect_value) not in actual_value
 
-    def allure_value(self, expect_value, actual_value):
-        Logger().logs_file().info("actual_value:{actual_value};expect_value:{expect_value}"
-                                  .format(actual_value=actual_value, expect_value=expect_value))
+
+def allure_value(expect_value, actual_value):
+    Logger().logs_file().info("actual_value:{actual_value};expect_value:{expect_value}"
+                              .format(actual_value=actual_value, expect_value=expect_value))
+    with allure.step("check"):
         allure.attach("预期结果：{expect_value}；实际结果：{actual_value}"
                       .format(expect_value=expect_value, actual_value=actual_value), "check")
