@@ -19,6 +19,12 @@ testcase:
     request:
       url: /api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup
       method: get
+    link:
+      Case1:
+        alias: # 别名
+        to: # url/body/header/method/response
+        data: # 字段
+        type: #类型
     check:
       - eq:
           - status, 200

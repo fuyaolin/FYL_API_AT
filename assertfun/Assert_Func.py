@@ -1,6 +1,6 @@
-import jsonpath
 import allure
 from common.Log import Logger
+from jsonpath import jsonpath
 
 
 class AssertResult(object):
@@ -42,10 +42,10 @@ class AssertResult(object):
             else:
                 # actually_value 是预期的key 在实际返回json中的值，即实际key
                 # actually_key 是预期的key 在实际返回json中jsonpath路径，即实际value
-                actually_key = '$..' + expected_key
-                if jsonpath.jsonpath(eval(self.actual_value), actually_key):
+                actually_key = '$..expected_key'.format(expected_key=expected_key)
+                if jsonpath(eval(self.actual_value), actually_key):
                     # 返回实际值进行比较
-                    actually_value = jsonpath.jsonpath(eval(self.actual_value), actually_key)[0]
+                    actually_value = jsonpath(eval(self.actual_value), actually_key)[0]
                     # 统一类型
                     if expected_value == "*":
                         # 预期值为*，代表对比返回参数的key

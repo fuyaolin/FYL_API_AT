@@ -25,8 +25,8 @@ class MemoryCase(object):
     def __init__(self):
         self.memory_case_value = {
             "header": None,
-            "body": None,
             "url": None,
+            "body": None,
             "method": None
         }
         global case_memory
@@ -47,8 +47,8 @@ class MemoryCase(object):
 
     @staticmethod
     def add_memory_case(memory_case_key, response):
-        case_memory['case'][memory_case_key].update({'response': response})
-
+        response = eval(response)
+        case_memory['case'].setdefault(memory_case_key, {})['response'] = response
 
     @staticmethod
     def memory_case_param():

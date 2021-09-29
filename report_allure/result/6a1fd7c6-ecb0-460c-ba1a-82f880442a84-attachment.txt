@@ -1,0 +1,11 @@
+DEBUG    root:yamlParams.py:153 name:告警事件审查; title:批量获取
+DEBUG    root:Request.py:27 method:get,url:http://localhost:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
+DEBUG    root:Request.py:129 status：404;response:<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+
+INFO     root:Assert_Func.py:113 actual_value:404;expect_value:200

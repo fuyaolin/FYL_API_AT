@@ -1,0 +1,46 @@
+2021-09-29 16:36:03,463 - root - DEBUG - 执行用例顺序为：['Case1', 'Case2']
+2021-09-29 16:36:03,505 - root - DEBUG - name:告警事件审查; title:批量获取
+2021-09-29 16:36:03,505 - root - DEBUG - method:get,url:http://localhost:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
+2021-09-29 16:36:03,519 - root - DEBUG - status：404;response:<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+
+2021-09-29 16:36:03,519 - root - INFO - actual_value:404;expect_value:200
+2021-09-29 16:36:03,580 - root - DEBUG - name:告警事件审查; title:批量获取
+2021-09-29 16:36:03,580 - root - DEBUG - method:get,url:http://localhost:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
+2021-09-29 16:36:03,593 - root - DEBUG - status：404;response:<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+
+2021-09-29 16:36:03,593 - root - INFO - actual_value:404;expect_value:200
+2021-09-29 16:38:49,173 - root - DEBUG - 执行用例顺序为：['Case1', 'Case2']
+2021-09-29 16:38:49,184 - root - DEBUG - name:告警事件审查; title:批量获取
+2021-09-29 16:38:49,184 - root - DEBUG - method:get,url:http://localhost:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
+2021-09-29 16:38:49,189 - root - DEBUG - status：404;response:<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+
+2021-09-29 16:38:49,190 - root - INFO - actual_value:404;expect_value:200
+2021-09-29 16:38:49,251 - root - DEBUG - name:告警事件审查; title:批量获取
+2021-09-29 16:38:49,252 - root - DEBUG - method:get,url:http://localhost:80/api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup,body:None
+2021-09-29 16:38:49,267 - root - DEBUG - status：404;response:<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+
+2021-09-29 16:38:49,267 - root - INFO - actual_value:404;expect_value:200

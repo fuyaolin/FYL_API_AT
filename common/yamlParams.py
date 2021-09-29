@@ -1,9 +1,11 @@
 """
     解读yaml参数
 """
+import re
 import time
 import pytest
 import allure
+from jsonpath import jsonpath
 from common.Log import Logger
 from common.Read_Config import ReadConfig
 from common.Request import YamlRequest
@@ -46,22 +48,22 @@ class Params(object):
         return self.runcase
 
     def yaml_setup(self):
-        if self.params['all_skip'] != 1 and 'setup' in self.params.keys():
+        if 'setup' in self.params.keys() and self.params['all_skip'] != 1:
             prefixed_value = self.params['setup']
             Prefixed(prefixed_value).exe_prefixed()
 
     def yaml_teardown(self):
-        if self.params['all_skip'] != 1 and 'teardown' in self.params.keys():
+        if 'teardown' in self.params.keys() and self.params['all_skip'] != 1:
             teardown_value = self.params['teardown']
             Prefixed(teardown_value).exe_suffixed()
 
     def yaml_index_setup(self, index):
-        if self.params['testcase'][index]['skip'] != 1 and 'setup' in self.params['testcase'][index].keys():
+        if 'setup' in self.params['testcase'][index].keys() and self.params['testcase'][index]['skip'] != 1:
             prefixed_value = self.params['testcase'][index]['setup']
             Prefixed(prefixed_value).exe_prefixed()
 
     def yaml_index_teardown(self, index):
-        if self.params['testcase'][index]['skip'] != 1 and 'teardown' in self.params['testcase'][index].keys():
+        if 'teardown' in self.params['testcase'][index].keys() and self.params['testcase'][index]['skip'] != 1:
             teardown_value = self.params['testcase'][index]['teardown']
             Prefixed(teardown_value).exe_suffixed()
 
@@ -123,6 +125,18 @@ class Params(object):
             self.body = self.params['testcase'][index]['request']['body']
             with allure.step('body'):
                 allure.attach('body: {body}'.format(body=self.body), "body")
+
+        # # 参数关联,可不存在
+        # if "link" in self.params['testcase'][index].keys():
+        #     for key, value in self.params['testcase'][index]['link'].items():
+        #         all_ready_case = MemoryCase().memory_case_param()
+        #         select_key = '$..{key}'.format(key=key)
+        #         ready_value = jsonpath(all_ready_case, select_key)[0]
+        #         relation = self.params['testcase'][index]['link'][key]['relation']
+        #         alias = self.params['testcase'][index]['link'][key]['alias']
+        #         data = self.params['testcase'][index]['link'][key]['data']
+        #         if relation == 'url':
+        #             self.url.re('$.*$')#####
 
         # 请求中存在图片,可不存在
         if "image" in self.params['testcase'][index]['request'].keys():

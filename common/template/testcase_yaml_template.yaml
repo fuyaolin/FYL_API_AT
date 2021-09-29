@@ -11,6 +11,13 @@ testcase:
     setup:
     teardown:
     sleep:
+    link:
+      Case1:
+        relation: url/body
+        alias: # 别名
+        data:
+          response/url/header/method: xx
+          type:
     request:
       header:
       url:
