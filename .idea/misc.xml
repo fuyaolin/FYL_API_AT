@@ -3,5 +3,10 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/report_allure/report/app.js" />
+    <file url="file://$PROJECT_DIR$/report_allure/report/index.html" />
+    <file url="file://$PROJECT_DIR$/report_allure/report/styles.css" />
+  </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 (FYL_API_AT)" project-jdk-type="Python SDK" />
 </project>
