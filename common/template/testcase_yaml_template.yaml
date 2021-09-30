@@ -16,10 +16,10 @@ testcase:
         relation: url/body
         alias: # 别名
         data:
-          response/url/header/method: xx
+          response/headers/request: xx
           type:
     request:
-      header:
+      headers:
       url:
       method:
       body:

@@ -36,7 +36,7 @@ def run_all():
     pytest.main(['-vs', '-m={type}'.format(type=types), model_path,
                  '--alluredir={dir}'.format(dir=rp.get_result_path())])
 
-    rp.restart()
+    # rp.restart()
 
 
 if __name__ == '__main__':

@@ -22,7 +22,7 @@ testcase:
     link:
       Case1:
         alias: # 别名
-        to: # url/body/header/method/response
+        to: # url/body/headers/method/response
         data: # 字段
         type: #类型
     check:

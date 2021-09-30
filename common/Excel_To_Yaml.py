@@ -60,9 +60,9 @@ class DoExcel(ReadExcel):
                     json_data['testcase'][case]['sleep'] = sleep
 
                 json_data['testcase'][case]['request'] = {}
-                if "header" in value.keys() and value["header"] is not None:
-                    header = value["header"]
-                    json_data['testcase'][case]['request']['header'] = header
+                if "headers" in value.keys() and value["headers"] is not None:
+                    headers = value["headers"]
+                    json_data['testcase'][case]['request']['headers'] = headers
                 if "url" in value.keys() and value["url"] is not None:
                     url = value["url"]
                     json_data['testcase'][case]['request']['url'] = url

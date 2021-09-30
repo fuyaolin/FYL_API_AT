@@ -5,7 +5,7 @@
         "case":
         {
             "case1":{
-                "header": None,
+                "headers": None,
                 "body": None,
                 "url": None,
                 "method": None,
@@ -24,10 +24,9 @@ case_memory = {
 class MemoryCase(object):
     def __init__(self):
         self.memory_case_value = {
-            "header": None,
+            "headers": None,
             "url": None,
             "body": None,
-            "method": None
         }
         global case_memory
 
@@ -38,11 +37,10 @@ class MemoryCase(object):
                 case_memory[key] = path
                 case_memory["case"] = {}
 
-    def add_memory_case_value(self, memory_case_key, header, body, url, method):
+    def add_memory_case_value(self, memory_case_key, headers, body, url):
         self.memory_case_value['url'] = url
-        self.memory_case_value['method'] = method
-        self.memory_case_value['header'] = header
-        self.memory_case_value['body'] = body
+        self.memory_case_value['headers'] = headers
+        self.memory_case_value['request'] = body
         case_memory['case'][memory_case_key] = self.memory_case_value
 
     @staticmethod

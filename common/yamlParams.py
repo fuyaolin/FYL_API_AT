@@ -1,16 +1,16 @@
 """
     解读yaml参数
 """
-import re
+
 import time
 import pytest
 import allure
-from jsonpath import jsonpath
 from common.Log import Logger
 from common.Read_Config import ReadConfig
 from common.Request import YamlRequest
 from public.prefixed import Prefixed
 from common.Memory_Case import MemoryCase
+from common.Modification import replace_link
 
 
 class Params(object):
@@ -93,8 +93,8 @@ class Params(object):
                 allure.attach('title: {title}'.format(title=self.title), 'title')
 
         # 请求头参数，可不存在
-        if "header" in self.params['testcase'][index]['request'].keys():
-            self.headers = self.params['testcase'][index]['request']['header']
+        if "headers" in self.params['testcase'][index]['request'].keys():
+            self.headers = self.params['testcase'][index]['request']['headers']
             with allure.step('headers'):
                 allure.attach('headers: {headers}'.format(headers=self.headers), 'headers')
 
@@ -126,17 +126,27 @@ class Params(object):
             with allure.step('body'):
                 allure.attach('body: {body}'.format(body=self.body), "body")
 
-        # # 参数关联,可不存在
-        # if "link" in self.params['testcase'][index].keys():
-        #     for key, value in self.params['testcase'][index]['link'].items():
-        #         all_ready_case = MemoryCase().memory_case_param()
-        #         select_key = '$..{key}'.format(key=key)
-        #         ready_value = jsonpath(all_ready_case, select_key)[0]
-        #         relation = self.params['testcase'][index]['link'][key]['relation']
-        #         alias = self.params['testcase'][index]['link'][key]['alias']
-        #         data = self.params['testcase'][index]['link'][key]['data']
-        #         if relation == 'url':
-        #             self.url.re('$.*$')#####
+        # 参数关联,可不存在
+        if "link" in self.params['testcase'][index].keys():
+            for key, value in self.params['testcase'][index]['link'].items():
+                alias = key
+                relation = self.params['testcase'][index]['link'][key]['relation']
+                data = self.params['testcase'][index]['link'][key]['data']
+                if relation == 'url':
+                    # 替换url,再url中查找$alias$，用data下面的值替换
+                    url_value = replace_link(self.url, alias, data)
+                    if url_value:
+                        self.url = url_value
+                        with allure.step('参数关联url'):
+                            allure.attach('参数关联url: {url}'.format(url=self.url), '参数关联url')
+                elif relation == 'body':
+                    body_value = replace_link(self.body, alias, data)
+                    if body_value:
+                        self.body = body_value
+                    with allure.step('参数关联body'):
+                        allure.attach('参数关联body: {url}'.format(url=self.body), '参数关联body')
+                else:
+                    pass
 
         # 请求中存在图片,可不存在
         if "image" in self.params['testcase'][index]['request'].keys():
@@ -151,8 +161,8 @@ class Params(object):
             self.check = self.params['testcase'][index]['check']
         Logger().logs_file().debug("name:{name}; title:{title}".format(name=self.name, title=self.title))
 
-        MemoryCase().add_memory_case_value(memory_case_key=index, header=self.headers,
-                                           body=self.body, url=self.url, method=self.method)
+        MemoryCase().add_memory_case_value(memory_case_key=index, headers=self.headers,
+                                           body=self.body, url=self.url)
 
         YamlRequest(index=index, url=self.url, method=self.method, headers=self.headers,
                     body=self.body, image=self.image, file=self.file, check=self.check).yaml_request()
