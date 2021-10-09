@@ -3,7 +3,7 @@
         报告的内容修改 --报告内容不满意
         返回参数中文件下载 文件/图片上传 -- 未完成未验证
 
-        参数如何关联？随机数什么的,参数化如何调用?
+        随机数什么的,参数化如何调用?
 
         每次执行完，自动发送邮件？ --带附件得邮件调试 --执行全部测试用例
 
@@ -33,8 +33,8 @@ def run_all():
 
     types = types if types != '' else 'all'
 
-    pytest.main(['-vs', '-m={type}'.format(type=types), model_path,
-                 '--alluredir={dir}'.format(dir=rp.get_result_path())])
+    # pytest.main(['-vs', '-m={type}'.format(type=types), model_path,
+    #              '--alluredir={dir}'.format(dir=rp.get_result_path())])
 
     # rp.restart()
 

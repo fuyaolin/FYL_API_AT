@@ -43,6 +43,9 @@ class AssertResult(object):
                 # actually_value 是预期的key 在实际返回json中的值，即实际key
                 # actually_key 是预期的key 在实际返回json中jsonpath路径，即实际value
                 actually_key = '$..expected_key'.format(expected_key=expected_key)
+                # 加一行代码解决 NameError: name 'false' is not defined
+                global false, null, true
+                false = null = true = ''
                 if jsonpath(eval(self.actual_value), actually_key):
                     # 返回实际值进行比较
                     actually_value = jsonpath(eval(self.actual_value), actually_key)[0]

@@ -11,7 +11,9 @@ sys.path.append(BASE_PATH)
 
 # 测试用例统用模板
 TESTCASE_PY_TEMPLATE_PATH = BASE_PATH + os.sep + "common" + os.sep + "template" + os.sep + "testcase_py_template.txt"
-TESTCASE_YAML_TEMPLATE_PATH = BASE_PATH + os.sep + "common" + os.sep + "template" + os.sep +"testcase_yaml_template.yaml"
+TESTCASE_YAML_TEMPLATE_PATH = BASE_PATH + os.sep + "common" + os.sep + "template" + os.sep + "testcase_yaml_template.yaml"
+# 参数关联文件路径
+LINK_FUNCTION_PATH = BASE_PATH + os.sep + "common" + os.sep + "Modification.py"
 
 # config模块
 # config下config.ini文件路
@@ -19,6 +21,8 @@ CONFIG_INI_PATH = BASE_PATH + os.sep + "config" + os.sep + "config.ini"
 # config下email文件路径
 EMAIL_PATH = BASE_PATH + os.path.sep + "config" + os.path.sep + "Send_Email.py"
 
+# 参数化文件夹路径
+REPLACE_FUNCTION_PATH = BASE_PATH + os.path.sep + "public" + os.path.sep + "function"
 # 前置文件路径
 SETUP_PATH = BASE_PATH + os.path.sep + "public" + os.path.sep + "setup"
 # 后置文件路径

@@ -29,7 +29,7 @@ class YamlRequest(object):
     def yaml_request(self):
         if self.method == ('get' or 'GET'):
             self.yaml_get()
-        if self.method == ('post' or 'POST'):
+        elif self.method == ('post' or 'POST'):
             if self.file_name is not None:
                 self.yaml_files_post()
             elif self.image_name is not None:
