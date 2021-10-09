@@ -29,12 +29,13 @@ class YamlRequest(object):
     def yaml_request(self):
         if self.method == ('get' or 'GET'):
             self.yaml_get()
-        elif self.method == ('post' or 'POST') and (self.file_name and self.image_name) is None:
-            self.yaml_post()
-        elif self.method == ('post' or 'POST') and self.file_name is not None:
-            self.yaml_files_post()
-        elif self.method == ('post' or 'POST') and self.image_name is not None:
-            self.yaml_image_post()
+        if self.method == ('post' or 'POST'):
+            if self.file_name is not None:
+                self.yaml_files_post()
+            elif self.image_name is not None:
+                self.yaml_image_post()
+            else:
+                self.yaml_post()
         elif self.method == ('put' or 'PUT'):
             self.yaml_put()
         elif self.method == ('delete' or 'DELETE'):
@@ -125,6 +126,8 @@ class YamlRequest(object):
     def res(self, res):
         value = res.text
         code = res.status_code
+        with allure.step("response"):
+            allure.attach("response: {response}".format(response=value), "response")
         MemoryCase().add_memory_case(memory_case_key=self.index, response=value)
         Logger().logs_file().debug("status：{status};response:{value}".format(status=code, value=value))
         if self.check is None:

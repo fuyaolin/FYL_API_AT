@@ -10,7 +10,7 @@ from common.Read_Config import ReadConfig
 from common.Request import YamlRequest
 from public.prefixed import Prefixed
 from common.Memory_Case import MemoryCase
-from common.Modification import replace_link
+from common.Modification import Link
 
 
 class Params(object):
@@ -134,17 +134,13 @@ class Params(object):
                 data = self.params['testcase'][index]['link'][key]['data']
                 if relation == 'url':
                     # 替换url,再url中查找$alias$，用data下面的值替换
-                    url_value = replace_link(self.url, alias, data)
+                    url_value = Link().replace_link(self.url, alias, data)
                     if url_value:
                         self.url = url_value
-                        with allure.step('参数关联url'):
-                            allure.attach('参数关联url: {url}'.format(url=self.url), '参数关联url')
                 elif relation == 'body':
-                    body_value = replace_link(self.body, alias, data)
+                    body_value = Link().replace_link(self.body, alias, data)
                     if body_value:
                         self.body = body_value
-                    with allure.step('参数关联body'):
-                        allure.attach('参数关联body: {url}'.format(url=self.body), '参数关联body')
                 else:
                     pass
 
