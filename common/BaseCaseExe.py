@@ -1,6 +1,6 @@
-from common.yamlParams import Params
-from common.YamlUtil import ReadYaml
-from common.Memory_Case import MemoryCase
+from common.BaseYamlParams import Params
+from common.BaseYamlUtil import ReadYaml
+from common.MemoryCase import MemoryCase
 
 
 class DataManager(object):

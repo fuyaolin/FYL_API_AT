@@ -2,8 +2,8 @@
 import os
 from ftplib import FTP
 import shutil
-from common.Read_Config import ReadConfig
-from common.Log import Logger
+from common.ReadConfigFile import ReadConfig
+from common.UpdateLog import Logger
 
 
 class FtpConnect(object):

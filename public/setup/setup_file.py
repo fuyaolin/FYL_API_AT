@@ -1,4 +1,4 @@
-from common.Log import Logger
+from common.UpdateLog import Logger
 
 def setup_function():
     Logger().logs_cmd().debug("setup1")

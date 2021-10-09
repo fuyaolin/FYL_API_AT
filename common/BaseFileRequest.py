@@ -3,7 +3,7 @@
 """
 import os
 import pytest
-from common.Read_Path import RES_IMAGE_PATH, RES_FILE_PATH
+from common.ReadPath import RES_IMAGE_PATH, RES_FILE_PATH
 
 
 class RequestFile(object):

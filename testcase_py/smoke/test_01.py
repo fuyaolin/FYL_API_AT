@@ -2,8 +2,8 @@
 import os
 import pytest
 import allure
-from common.Data_Manager import Runcase
-from common.Read_Path import TESTCASE_PY_NAME_PATH
+from common.BaseCaseExe import Runcase
+from common.ReadPath import TESTCASE_PY_NAME_PATH
 
 PATH = os.path.realpath(__file__).replace("_py", "_yaml").replace(".py", ".yaml")
 CASE = Runcase().case(PATH)

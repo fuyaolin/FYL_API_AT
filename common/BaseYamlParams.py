@@ -5,11 +5,11 @@
 import time
 import pytest
 import allure
-from common.Log import Logger
-from common.Read_Config import ReadConfig
-from common.Request import YamlRequest
+from common.UpdateLog import Logger
+from common.ReadConfigFile import ReadConfig
+from common.BaseRequest import YamlRequest
 from public.prefixed import Prefixed
-from common.Memory_Case import MemoryCase
+from common.MemoryCase import MemoryCase
 from common.Modification import Link
 
 

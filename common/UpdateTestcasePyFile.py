@@ -1,6 +1,6 @@
 import os
 import glob
-from common.Read_Path import TESTCASE_PY_PATH, TESTCASE_YAML_PATH, TESTCASE_PY_TEMPLATE_PATH
+from common.ReadPath import TESTCASE_PY_PATH, TESTCASE_YAML_PATH, TESTCASE_PY_TEMPLATE_PATH
 
 
 class ExeFile(object):

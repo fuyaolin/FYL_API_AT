@@ -4,7 +4,7 @@
 import openpyxl
 import os
 import copy
-from common.Read_Path import EXCEL_PATH
+from common.ReadPath import EXCEL_PATH
 
 
 class ReadExcel:

@@ -1,5 +1,5 @@
 import allure
-from common.Log import Logger
+from common.UpdateLog import Logger
 from jsonpath import jsonpath
 
 

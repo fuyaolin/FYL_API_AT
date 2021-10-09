@@ -2,7 +2,7 @@
     清除之前的报告
 """
 import os
-from common.Read_Path import REPORT_REPORT_PATH, REPORT_RESULT_PATH
+from common.ReadPath import REPORT_REPORT_PATH, REPORT_RESULT_PATH
 
 
 class Report(object):

@@ -14,8 +14,8 @@
 # 运行全部用例
 import os
 import pytest
-from common.Report import Report
-from common.Read_Path import TESTCASE_PY_PATH
+from common.BaseReport import Report
+from common.ReadPath import TESTCASE_PY_PATH
 
 
 def run_all():

@@ -3,7 +3,7 @@
 """
 # -*- coding: utf-8 -*-
 from configparser import ConfigParser
-from common.Read_Path import CONFIG_INI_PATH
+from common.ReadPath import CONFIG_INI_PATH
 
 
 class ReadConfig(object):

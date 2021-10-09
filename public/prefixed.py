@@ -5,8 +5,8 @@
 import os
 import sys
 import importlib
-from common.Log import Logger
-from common.Read_Path import SETUP_PATH, TEARDOWN_PATH
+from common.UpdateLog import Logger
+from common.ReadPath import SETUP_PATH, TEARDOWN_PATH
 
 
 class Prefixed(object):

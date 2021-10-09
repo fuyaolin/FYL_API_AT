@@ -5,7 +5,7 @@ import logging
 import logging.handlers
 import os
 from datetime import datetime
-from common.Read_Path import LOGS_PATH
+from common.ReadPath import LOGS_PATH
 
 LOGS_FILE_PATH = LOGS_PATH + os.path.sep + datetime.now().strftime("%Y-%m-%d") + "AT_logs.log"
 NAME = "root"

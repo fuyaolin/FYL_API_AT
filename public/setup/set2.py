@@ -1,4 +1,4 @@
-from common.Log import Logger
+from common.UpdateLog import Logger
 
 
 def setup():

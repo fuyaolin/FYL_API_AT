@@ -3,7 +3,7 @@
 """
 import re
 from jsonpath import jsonpath
-from common.Memory_Case import MemoryCase
+from common.MemoryCase import MemoryCase
 
 
 class Link(object):

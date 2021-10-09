@@ -5,10 +5,10 @@ import requests
 import pytest
 import json
 import allure
-from common.Log import Logger
-from assertfun.Assert_Func import AssertResult
-from common.Request_File import RequestFile
-from common.Memory_Case import MemoryCase
+from common.UpdateLog import Logger
+from assertfun.AssertFunction import AssertResult
+from common.BaseFileRequest import RequestFile
+from common.MemoryCase import MemoryCase
 
 
 class YamlRequest(object):

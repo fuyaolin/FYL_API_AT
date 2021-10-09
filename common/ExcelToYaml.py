@@ -6,8 +6,8 @@
 import yaml
 import os
 import copy
-from common.Read_Excel import ReadExcel
-from common.Read_Path import TESTCASE_YAML_PATH
+from common.ExcelRead import ReadExcel
+from common.ReadPath import TESTCASE_YAML_PATH
 
 
 class DoExcel(ReadExcel):
