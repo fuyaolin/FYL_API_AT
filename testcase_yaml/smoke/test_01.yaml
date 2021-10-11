@@ -3,10 +3,10 @@ all_skip: false
 testcase:
   Case1:
     skip: false
-    name: 告警事件审查
+    name: test
     title: 批量获取
     request:
-      url: /api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup
+      url: /api/test/log
       method: get
     check:
       - eq:
@@ -14,10 +14,10 @@ testcase:
 
   Case2:
     skip: false
-    name: 告警事件审查
+    name: test
     title: 批量获取
     request:
-      url: /api/v1/kai/alerts/alert/log?page=1&size=10&order=alertLogTime&by=desc&key=&alertType=&severityKey=&type=ungroup
+      url: /api/test/log
       method: get
     link:
       Case1:

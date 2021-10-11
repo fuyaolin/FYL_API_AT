@@ -15,7 +15,7 @@ class ReadConfig(object):
     @property
     def get_url(self):
         get_ip_url = self.get_trans + "://" + self.get_ip + ":" + self.get_port
-        if get_ip_url == "://:":
+        if get_ip_url.startswith("://"):
             get_ip_url = None
         return get_ip_url
 

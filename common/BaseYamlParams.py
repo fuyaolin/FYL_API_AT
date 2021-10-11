@@ -137,10 +137,14 @@ class Params(object):
                     url_value = Link().replace_link(self.url, alias, data)
                     if url_value:
                         self.url = url_value
+                        with allure.step('url_link'):
+                            allure.attach('url_link: {url_link}'.format(url_link=self.url), 'url_link')
                 elif relation == 'body':
                     body_value = Link().replace_link(self.body, alias, data)
                     if body_value:
                         self.body = body_value
+                        with allure.step('body_link'):
+                            allure.attach('body_link: {body_link}'.format(body_link=self.body), 'body_link')
                 else:
                     pass
 
