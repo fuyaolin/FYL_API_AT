@@ -11,6 +11,7 @@ from common.BaseRequest import YamlRequest
 from public.prefixed import Prefixed
 from common.MemoryCase import MemoryCase
 from common.Modification import Link
+from common.ModifyParam import ParameterSub
 
 
 class Params(object):
@@ -75,6 +76,8 @@ class Params(object):
             if skip == 1:
                 pytest.skip("测试用例开关未开启")
                 Logger().logs_file().debug("{index} 测试用例开关未开启".format(index=index))
+            else:
+                self.params['testcase'][index] = ParameterSub(self.params['testcase'][index]).substitution()
 
         # 休眠参数，可不存在
         if 'sleep' in self.params['testcase'][index].keys():

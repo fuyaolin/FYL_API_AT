@@ -53,56 +53,49 @@ class YamlRequest(object):
         try:
             res = requests.get(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
             self.res(res)
-        except requests.exceptions.RequestException:
-            exception = requests.exceptions.RequestException
+        except requests.exceptions.RequestException as exception:
             pytest.xfail(reason=str(exception))
 
     def yaml_post(self):
         try:
             res = requests.post(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
             self.res(res)
-        except requests.exceptions.RequestException:
-            exception = requests.exceptions.RequestException
+        except requests.exceptions.RequestException as exception:
             pytest.xfail(reason=str(exception))
 
     def yaml_put(self):
         try:
             res = requests.put(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
             self.res(res)
-        except requests.exceptions.RequestException:
-            exception = requests.exceptions.RequestException
+        except requests.exceptions.RequestException as exception:
             pytest.xfail(reason=str(exception))
 
     def yaml_delete(self):
         try:
             res = requests.delete(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
             self.res(res)
-        except requests.exceptions.RequestException:
-            exception = requests.exceptions.RequestException
+        except requests.exceptions.RequestException as exception:
             pytest.xfail(reason=str(exception))
 
     def yaml_patch(self):
         try:
             res = requests.patch(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
             self.res(res)
-        except requests.exceptions.RequestException:
-            exception = requests.exceptions.RequestException
+        except requests.exceptions.RequestException as exception:
             pytest.xfail(reason=str(exception))
 
     def yaml_options(self):
         try:
             res = requests.options(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
             self.res(res)
-        except requests.exceptions.RequestException:
-            exception = requests.exceptions.RequestException
+        except requests.exceptions.RequestException as exception:
             pytest.xfail(reason=str(exception))
 
     def yaml_head(self):
         try:
             res = requests.head(headers=self.headers, url=self.url, data=json.dumps(self.body), timeout=30)
             self.res(res)
-        except requests.exceptions.RequestException:
-            exception = requests.exceptions.RequestException
+        except requests.exceptions.RequestException as exception:
             pytest.xfail(reason=str(exception))
 
     def yaml_files_post(self):
@@ -110,8 +103,7 @@ class YamlRequest(object):
             files = RequestFile().files_up(self.file_name)
             res = requests.post(headers=self.headers, url=self.url, data=json.dumps(self.body), files=files, timeout=30)
             self.res(res)
-        except requests.exceptions.RequestException:
-            exception = requests.exceptions.RequestException
+        except requests.exceptions.RequestException as exception:
             pytest.xfail(reason=str(exception))
 
     def yaml_image_post(self):
@@ -119,8 +111,7 @@ class YamlRequest(object):
             files = RequestFile().image_up(self.image_name)
             res = requests.post(headers=self.headers, url=self.url, data=json.dumps(self.body), files=files, timeout=30)
             self.res(res)
-        except requests.exceptions.RequestException:
-            exception = requests.exceptions.RequestException
+        except requests.exceptions.RequestException as exception:
             pytest.xfail(reason=str(exception))
 
     def res(self, res):

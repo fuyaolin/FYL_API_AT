@@ -38,15 +38,15 @@ class ExeFile(object):
 
     # 创建的py文件创建
     def mkdir(self, yaml_name):
-        py_path = self.TESTCASE_PY_PATH + os.sep + yaml_name + ".py"
-        if len(py_path.split("\\")) != 1:
-            new_py_path = py_path.replace(py_path.split("\\")[-1], "")
+        py_path = os.path.join(self.TESTCASE_PY_PATH, yaml_name + ".py")
+        if len(str(py_path).split("\\")) != 1:
+            new_py_path = os.path.dirname(py_path)
             if os.path.exists(new_py_path) is False:
                 os.mkdir(new_py_path)
         # 写入执行脚本
         try:
             old_str = '{}'
-            new_str = py_path.split('\\')[-2]
+            new_str = str(py_path).split('\\')[-2]
             with open(self.TESTCASE_PY_TEMPLATE_PATH, "r") as f1, open(py_path, "w", encoding='utf-8') as f2:
                 for line in f1:
                     if old_str in line:
