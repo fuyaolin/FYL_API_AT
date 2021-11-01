@@ -149,7 +149,7 @@ class Params(object):
                         with allure.step('body_link'):
                             allure.attach('body_link: {body_link}'.format(body_link=self.body), 'body_link')
                 else:
-                    pass
+                    Logger().logs_file().warning("替换的参数只能为url或者请求body中")
 
         # 请求中存在图片,可不存在
         if "image" in self.params['testcase'][index]['request'].keys():

@@ -23,7 +23,7 @@ class ReadExcel:
         excels_path = []
         for root, dirs, files in os.walk(self.EXCEL_PATH):
             for i in files:
-                excel_path = root + os.sep + i
+                excel_path = os.path.join(root, i)
                 excels_path.append(excel_path)
 
         for excel_file in excels_path:

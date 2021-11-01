@@ -39,39 +39,37 @@ class DoExcel(ReadExcel):
                     raise Exception("case参数必须存在且不能为空")
 
                 if "skip" in value.keys() and value["skip"] is not None:
-                    skip = value["skip"]
-                    json_data['testcase'][case]['skip'] = skip
+                    json_data['testcase'][case]['skip'] = value["skip"]
                 else:
                     raise Exception("skip参数必须存在且不能为空")
+
                 if "name" in value.keys() and value["name"] is not None:
-                    name = value["name"]
-                    json_data['testcase'][case]['name'] = name
+                    json_data['testcase'][case]['name'] = value["name"]
+
                 if "title" in value.keys() and value["title"] is not None:
-                    title = value["title"]
-                    json_data['testcase'][case]['title'] = title
+                    json_data['testcase'][case]['title'] = value["title"]
+
                 if "setup" in value.keys() and value["setup"] is not None:
-                    setup = value["setup"]
-                    json_data['testcase'][case]['setup'] = setup
+                    json_data['testcase'][case]['setup'] = value["setup"]
+
                 if "teardown" in value.keys() and value["teardown"] is not None:
-                    teardown = value["teardown"]
-                    json_data['testcase'][case]['teardown'] = teardown
+                    json_data['testcase'][case]['teardown'] = value["teardown"]
+
                 if "sleep" in value.keys() and value["sleep"] is not None:
-                    sleep = value["sleep"]
-                    json_data['testcase'][case]['sleep'] = sleep
+                    json_data['testcase'][case]['sleep'] = value["sleep"]
 
                 json_data['testcase'][case]['request'] = {}
                 if "headers" in value.keys() and value["headers"] is not None:
-                    headers = value["headers"]
-                    json_data['testcase'][case]['request']['headers'] = headers
+                    json_data['testcase'][case]['request']['headers'] = value["headers"]
+
                 if "url" in value.keys() and value["url"] is not None:
-                    url = value["url"]
-                    json_data['testcase'][case]['request']['url'] = url
+                    json_data['testcase'][case]['request']['url'] = value["url"]
+
                 if "method" in value.keys() and value["method"] is not None:
-                    method = value["method"]
-                    json_data['testcase'][case]['request']['method'] = method
+                    json_data['testcase'][case]['request']['method'] = value["method"]
+
                 if "body" in value.keys() and value["body"] is not None:
-                    body = eval(value["body"])
-                    json_data['testcase'][case]['request']['body'] = body
+                    json_data['testcase'][case]['request']['body'] = eval(value["body"])
 
                 json_data['testcase'][case]['check'] = []
                 check = {}
@@ -95,10 +93,10 @@ class DoExcel(ReadExcel):
     @staticmethod
     def toyaml(filename, json_data):
         # json数据转换为yaml
-        if type(json_data) is 'string':
+        if isinstance(json_data, str):
             json_data = eval(json_data)
         # 写入yaml文件
-        filepath = TESTCASE_YAML_PATH + os.sep + filename + ".yaml"
+        filepath = os.path.join(TESTCASE_YAML_PATH, filename+".yaml")
         try:
             with open(filepath, "w") as f:
                 json_yaml = yaml.dump(json_data, default_flow_style=False, allow_unicode=True)

@@ -31,8 +31,3 @@ class SSHConfig(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.ssh.close()
-
-# 调用
-if __name__ == '__main__':
-    with SSHConfig() as a:
-        a.run_command(cmd='cmd')
