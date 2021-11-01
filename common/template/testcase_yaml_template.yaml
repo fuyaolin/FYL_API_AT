@@ -12,9 +12,9 @@ testcase:
     teardown:
     sleep:
     link:
-      Case1:
+      alias: # 别名
         relation: url/body
-        alias: # 别名
+        case: # 关联用例
         data:
           response/headers/request: xx
           type:

@@ -104,10 +104,7 @@ class Params(object):
         # 请求url，必须存在
         if self.params['testcase'][index]['request']['url']:
             url = self.params['testcase'][index]['request']['url']
-            if url[:1] is "/":
-                self.url = ReadConfig().get_url + url
-            else:
-                self.url = url
+            self.url = ReadConfig().get_url + url if url[:1] is "/" else url
             with allure.step('url'):
                 allure.attach('url: {url}'.format(url=self.url), 'url')
         else:
@@ -163,9 +160,6 @@ class Params(object):
         if 'check' in self.params['testcase'][index].keys():
             self.check = self.params['testcase'][index]['check']
         Logger().logs_file().debug("name:{name}; title:{title}".format(name=self.name, title=self.title))
-
-        MemoryCase().add_memory_case_value(memory_case_key=index, headers=self.headers,
-                                           body=self.body, url=self.url)
 
         YamlRequest(index=index, url=self.url, method=self.method, headers=self.headers,
                     body=self.body, image=self.image, file=self.file, check=self.check).yaml_request()

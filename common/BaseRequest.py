@@ -111,8 +111,11 @@ class YamlRequest(object):
         code = res.status_code
         with allure.step("response"):
             allure.attach("response: {response}".format(response=value), "response")
-        MemoryCase().add_memory_case(memory_case_key=self.index, response=value)
+        # 添加到参数中
+        MemoryCase().add_memory_case_value(memory_case_key=self.index, headers=self.headers,
+                                           body=self.body, url=self.url, response=value)
         Logger().logs_file().debug("status：{status};response:{value}".format(status=code, value=value))
+        # 检查点
         if self.check is None:
             # 没有检查点，永远成立
             actual_value = "status：{status};response:{value}".format(status=code, value=value)

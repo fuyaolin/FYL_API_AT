@@ -15,7 +15,7 @@ class Link(object):
         self.link = str(link)
         all_ready_case = MemoryCase().memory_case_param()
         alias = f'${alias}$'
-        if len(data) < 0 or len(data) > 3:
+        if len(data) < 1 or len(data) > 3:
             return False
         data_value = data['case']
         # 替换值

@@ -28,6 +28,7 @@ class MemoryCase(object):
             "headers": None,
             "url": None,
             "body": None,
+            "response": None
         }
         global case_memory
 
@@ -38,21 +39,21 @@ class MemoryCase(object):
                 case_memory[key] = path
                 case_memory["case"] = {}
 
-    def add_memory_case_value(self, memory_case_key, headers, body, url):
+    def add_memory_case_value(self, memory_case_key, headers, body, url, response):
         self.memory_case_value['url'] = url
         if isinstance(headers, str):
             headers = json.dumps(headers)
         self.memory_case_value['headers'] = headers
+
         if isinstance(body, str):
             body = json.dumps(body)
         self.memory_case_value['request'] = body
-        case_memory['case'][memory_case_key] = self.memory_case_value
 
-    @staticmethod
-    def add_memory_case(memory_case_key, response):
         if isinstance(response, str):
             response = json.dumps(response)
-        case_memory['case'].setdefault(memory_case_key, {})['response'] = response
+        self.memory_case_value['response'] = response
+
+        case_memory['case'][memory_case_key] = self.memory_case_value
 
     @staticmethod
     def memory_case_param():
