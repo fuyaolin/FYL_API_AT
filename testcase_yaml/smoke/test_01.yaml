@@ -19,12 +19,6 @@ testcase:
     request:
       url: /api/test/log
       method: get
-    link:
-      Case1:
-        alias: # 别名
-        to: # url/body/headers/method/response
-        data: # 字段
-        type: #类型
     check:
       - eq:
           - status, 200

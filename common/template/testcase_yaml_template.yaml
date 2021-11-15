@@ -14,8 +14,8 @@ testcase:
     link:
       alias: # 别名
         relation: url/body
-        case: # 关联用例
         data:
+          case: # 关联用例
           response/headers/request: xx
           type:
     request:
