@@ -1,5 +1,5 @@
 """
-    参数化
+    函数参数化${文件名.函数名}$
 """
 import re
 import os
@@ -17,6 +17,7 @@ class ParameterSub(object):
         pattern = re.compile(r'\$\{.*?\}\$')
         result = pattern.findall(self.params)
         for fun_index in result:
+            # 提取文件名.函数名
             fun = fun_index[2:-2]
             if len(fun.split('.')) < 2:
                 continue
@@ -24,11 +25,13 @@ class ParameterSub(object):
             fun_path = os.path.join(REPLACE_FUNCTION_PATH, fun_file + '.py')
             if os.path.exists(fun_path):
                 fun_name = fun[len(fun_file) + 1:]
+                # 导入文件
                 try:
                     exec(f"from public.function.{fun_file} import *")
-                except Exception as e:
-                    Logger().logs_file().warning("替换参数失败：{fun_name},报错{e}".format(fun_name=fun_name, e=e))
+                except ImportError:
+                    Logger().logs_file().warning("{fun_name}替换参数失败,报错{e}".format(fun_name=fun_name, e=ImportError))
                     continue
+                # 执行函数
                 return_value = eval(fun_name)
                 if return_value:
                     self.params = self.params.replace(fun_index, return_value)
