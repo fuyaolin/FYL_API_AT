@@ -26,7 +26,7 @@ class DoExcel(ReadExcel):
         for val in range(len(sheet_data)):
             if sheet_data[val] is not None:
                 sheet = sheet_data[val][0]
-                value = sheet_data[val][-1] if type(sheet_data[val][-1]) is not "dict" else eval(sheet_data[val][-1])
+                value = sheet_data[val][-1] if isinstance(sheet_data[val][-1], dict) else eval(sheet_data[val][-1])
                 if "filename" in value.keys() and value["filename"] is not None:
                     filename = value["filename"]
                 else:

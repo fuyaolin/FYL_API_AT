@@ -40,27 +40,33 @@ class DateTime(object):
         return datetime.datetime.now()
 
     # 获取前x天
-    def daytimediff(self, num):
+    @staticmethod
+    def daytimediff(num):
         return (datetime.datetime.now()-datetime.timedelta(days=num)).strftime("%Y-%m-%d %H:%M:%S")
 
     # 获取后x天
-    def daytimeadd(self, num):
+    @staticmethod
+    def daytimeadd(num):
         return (datetime.datetime.now()+datetime.timedelta(days=num)).strftime("%Y-%m-%d %H:%M:%S")
 
     # 获取前x小时
-    def hourtimediff(self, num):
+    @staticmethod
+    def hourtimediff(num):
         return (datetime.datetime.now()-datetime.timedelta(hours=num)).strftime("%Y-%m-%d %H:%M:%S")
 
     # 获取后x小时
-    def hourtimeadd(self, num):
+    @staticmethod
+    def hourtimeadd(num):
         return (datetime.datetime.now()+datetime.timedelta(hours=num)).strftime("%Y-%m-%d %H:%M:%S")
 
     # 获取前x秒
-    def sectimediff(self, num):
+    @staticmethod
+    def sectimediff(num):
         return (datetime.datetime.now()-datetime.timedelta(seconds=num)).strftime("%Y-%m-%d %H:%M:%S")
 
     # 获取后x秒
-    def sectimeadd(self, num):
+    @staticmethod
+    def sectimeadd(num):
         return (datetime.datetime.now()+datetime.timedelta(seconds=num)).strftime("%Y-%m-%d %H:%M:%S")
 
 
