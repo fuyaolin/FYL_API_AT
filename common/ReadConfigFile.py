@@ -21,53 +21,43 @@ class ReadConfig(object):
 
     @property
     def get_trans(self):
-        get_trans = self.config.get("link", "trans")
-        return get_trans
+        return self.config.get("link", "trans")
 
     @property
     def get_ip(self):
-        get_ip = self.config.get("link", "ip")
-        return get_ip
+        return self.config.get("link", "ip")
 
     @property
     def get_port(self):
-        get_port = self.config.get("link", "port")
-        return get_port
+        return self.config.get("link", "port")
 
     @property
     def get_mysql_port(self):
-        get_mysql_port = self.config.get("mysql_con", "mysql_port")
-        return int(get_mysql_port)
+        return int(self.config.get("mysql_con", "mysql_port"))
 
     @property
     def get_mysql_database(self):
-        get_mysql_database = self.config.get("mysql_con", "mysql_database")
-        return get_mysql_database
+        return self.config.get("mysql_con", "mysql_database")
 
     @property
     def get_mysql_user(self):
-        get_mysql_user = self.config.get("mysql_con", "mysql_user")
-        return get_mysql_user
+        return self.config.get("mysql_con", "mysql_user")
 
     @property
     def get_mysql_passwd(self):
-        get_mysql_passwd = self.config.get("mysql_con", "mysql_passwd")
-        return get_mysql_passwd
+        return self.config.get("mysql_con", "mysql_passwd")
 
     @property
     def get_mysql_charset(self):
-        get_mysql_charset = self.config.get("mysql_con", "mysql_charset")
-        return get_mysql_charset
+        return self.config.get("mysql_con", "mysql_charset")
 
     @property
     def get_email_sender(self):
-        get_email_sender = self.config.get("email", "sender")
-        return get_email_sender
+        return self.config.get("email", "sender")
 
     @property
     def get_email_sender_username(self):
-        get_email_sender_username = self.config.get("email", "sender_username")
-        return get_email_sender_username
+        return self.config.get("email", "sender_username")
 
     @property
     def get_email_sender_password(self):
